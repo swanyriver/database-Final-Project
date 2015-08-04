@@ -1,6 +1,6 @@
----------------------------------------
---ensure starting brand new tables ----
----------------------------------------
+-- -------------------------------------
+-- ensure starting brand new tables ----
+-- -------------------------------------
 DROP TABLE IF EXISTS 'sk8_riders';
 DROP TABLE IF EXISTS 'sk8_brand';
 DROP TABLE IF EXISTS 'sk8_wheel_type';
@@ -13,11 +13,11 @@ DROP TABLE IF EXISTS 'sk8_skateboards';
 DROP TABLE IF EXISTS 'sk8_riders_skateboards';
 
 
----------------------------------------
------Create sk8 Tables-----------------
----------------------------------------
+-- -------------------------------------
+-- ---Create sk8 Tables-----------------
+-- -------------------------------------
 
------Independent Entities------
+-- ---Independent Entities------
 CREATE TABLE sk8_riders (
   id INT NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE sk8_brand (
 );
 
 
------Equipment Types--------
+-- ---Equipment Types--------
 CREATE TABLE sk8_wheel_type(
   id INT NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
@@ -65,8 +65,8 @@ CREATE TABLE sk8_deck_type(
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
 );
 
------Equipment Inventory------------------------------
------Each entry/row in tables is a real world item----
+-- ---Equipment Inventory------------------------------
+-- ---Each entry/row in tables is a real world item----
 CREATE TABLE sk8_wheel_inv(
   id INT NOT NULL AUTO_INCREMENT,
   fk_wheel_id INT NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE sk8_deck_inv(
   FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_type (id)
 );
 
----Relational Tables----
+-- -Relational Tables----
 CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
   assembled DATE NOT NULL,
@@ -112,6 +112,6 @@ CREATE TABLE sk8_riders_skateboards(
   FOREIGN KEY (fk_skateboard_id) REFERENCES sk8_skateboards(id),
   CONSTRAINT pk_rider_board PRIMARY KEY (fk_rider_id,fk_skateboard_id)
 );
----------------------------------------
-----Populate Tables--------------------
----------------------------------------
+-- -------------------------------------
+-- --Populate Tables--------------------
+-- -------------------------------------
