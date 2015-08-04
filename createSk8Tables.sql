@@ -96,6 +96,7 @@ CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
   assembled DATE NOT NULL,
   dissasembled DATE DEFAULT NULL,
+  img_url varchar(255) DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
   fk_deck_id INT NOT NULL,
   fk_truck_id INT NOT NULL,
   fk_wheel_id INT NOT NULL,
