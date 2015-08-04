@@ -72,7 +72,6 @@ CREATE TABLE sk8_deck_type(
 CREATE TABLE sk8_wheel_inv(
   id INT NOT NULL AUTO_INCREMENT,
   fk_wheel_id INT NOT NULL,
-  broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_type (id)
 )ENGINE=InnoDB;
@@ -80,7 +79,6 @@ CREATE TABLE sk8_wheel_inv(
 CREATE TABLE sk8_truck_inv(
   id INT NOT NULL AUTO_INCREMENT,
   fk_truck_id INT NOT NULL,
-  broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_truck_id) REFERENCES sk8_truck_type (id)
 )ENGINE=InnoDB;
@@ -88,7 +86,6 @@ CREATE TABLE sk8_truck_inv(
 CREATE TABLE sk8_deck_inv(
   id INT NOT NULL AUTO_INCREMENT,
   fk_deck_id INT NOT NULL,
-  broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_type (id)
 )ENGINE=InnoDB;
@@ -96,7 +93,7 @@ CREATE TABLE sk8_deck_inv(
 -- -Relational Tables----
 CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
-  assembled DATE NOT NULL,
+  assembled DATE NOT NULL DEFAULT GETDATE(),
   dissasembled DATE DEFAULT NULL,
   img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
   fk_deck_id INT NOT NULL,
