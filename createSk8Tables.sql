@@ -104,7 +104,7 @@ CREATE TABLE  sk8_skateboards(
   PRIMARY KEY (id),
   FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_inv(id),
   FOREIGN KEY (fk_truck_id) REFERENCES sk8_truck_inv(id),
-  FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_inv(id),
+  FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_inv(id)
 );
 
 CREATE TABLE sk8_riders_skateboards(
