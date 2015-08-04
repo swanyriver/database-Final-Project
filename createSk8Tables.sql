@@ -1,16 +1,16 @@
 -- -------------------------------------
 -- ensure starting brand new tables ----
 -- -------------------------------------
-DROP TABLE IF EXISTS 'sk8_riders';
-DROP TABLE IF EXISTS 'sk8_brand';
-DROP TABLE IF EXISTS 'sk8_wheel_type';
-DROP TABLE IF EXISTS 'sk8_truck_type';
-DROP TABLE IF EXISTS 'sk8_deck_type';
-DROP TABLE IF EXISTS 'sk8_wheel_inv';
-DROP TABLE IF EXISTS 'sk8_truck_inv';
-DROP TABLE IF EXISTS 'sk8_deck_inv';
-DROP TABLE IF EXISTS 'sk8_skateboards';
-DROP TABLE IF EXISTS 'sk8_riders_skateboards';
+DROP TABLE IF EXISTS `sk8_riders`;
+DROP TABLE IF EXISTS `sk8_brand`;
+DROP TABLE IF EXISTS `sk8_wheel_type`;
+DROP TABLE IF EXISTS `sk8_truck_type`;
+DROP TABLE IF EXISTS `sk8_deck_type`;
+DROP TABLE IF EXISTS `sk8_wheel_inv`;
+DROP TABLE IF EXISTS `sk8_truck_inv`;
+DROP TABLE IF EXISTS `sk8_deck_inv`;
+DROP TABLE IF EXISTS `sk8_skateboards`;
+DROP TABLE IF EXISTS `sk8_riders_skateboards`;
 
 
 -- -------------------------------------
