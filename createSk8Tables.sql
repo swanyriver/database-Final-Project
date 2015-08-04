@@ -17,22 +17,20 @@ DROP TABLE IF EXISTS `sk8_riders_skateboards`;
 -- ---Create sk8 Tables-----------------
 -- -------------------------------------
 
-SET default_storage_engine=INNODB;
-
 -- ---Independent Entities------
 CREATE TABLE sk8_riders (
   id INT NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/profileshadow.jpg',
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_brand (
   id INT NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   img_url varchar(255),
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB;
 
 
 -- ---Equipment Types--------
@@ -44,7 +42,7 @@ CREATE TABLE sk8_wheel_type(
   durometer INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_truck_type(
   id INT NOT NULL AUTO_INCREMENT,
@@ -54,7 +52,7 @@ CREATE TABLE sk8_truck_type(
   width INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_deck_type(
   id INT NOT NULL AUTO_INCREMENT,
@@ -65,7 +63,7 @@ CREATE TABLE sk8_deck_type(
   description varchar(511) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
-);
+)ENGINE=InnoDB;
 
 -- ---Equipment Inventory------------------------------
 -- ---Each entry/row in tables is a real world item----
@@ -75,7 +73,7 @@ CREATE TABLE sk8_wheel_inv(
   broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_type (id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_truck_inv(
   id INT NOT NULL AUTO_INCREMENT,
@@ -83,7 +81,7 @@ CREATE TABLE sk8_truck_inv(
   broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_truck_id) REFERENCES sk8_truck_type (id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_deck_inv(
   id INT NOT NULL AUTO_INCREMENT,
@@ -91,7 +89,7 @@ CREATE TABLE sk8_deck_inv(
   broken boolean DEFAULT FALSE,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_type (id)
-);
+)ENGINE=InnoDB;
 
 -- -Relational Tables----
 CREATE TABLE  sk8_skateboards(
@@ -105,7 +103,7 @@ CREATE TABLE  sk8_skateboards(
   FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_inv(id),
   FOREIGN KEY (fk_truck_id) REFERENCES sk8_truck_inv(id),
   FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_inv(id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE sk8_riders_skateboards(
   fk_rider_id INT NOT NULL,
@@ -114,7 +112,7 @@ CREATE TABLE sk8_riders_skateboards(
   FOREIGN KEY (fk_skateboard_id) REFERENCES sk8_skateboards(id),
   -- CONSTRAINT pk_rider_board PRIMARY KEY (fk_rider_id,fk_skateboard_id)
   PRIMARY KEY (fk_rider_id, fk_skateboard_id)
-);
+)ENGINE=InnoDB;
 
 -- -------------------------------------
 -- --Populate Tables--------------------
