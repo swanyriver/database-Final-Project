@@ -17,6 +17,8 @@ DROP TABLE IF EXISTS `sk8_riders_skateboards`;
 -- ---Create sk8 Tables-----------------
 -- -------------------------------------
 
+SET default_storage_engine=INNODB;
+
 -- ---Independent Entities------
 CREATE TABLE sk8_riders (
   id INT NOT NULL AUTO_INCREMENT,
@@ -110,8 +112,10 @@ CREATE TABLE sk8_riders_skateboards(
   fk_skateboard_id INT NOT NULL,
   FOREIGN KEY (fk_rider_id) REFERENCES sk8_riders(id),
   FOREIGN KEY (fk_skateboard_id) REFERENCES sk8_skateboards(id),
-  CONSTRAINT pk_rider_board PRIMARY KEY (fk_rider_id,fk_skateboard_id)
+  -- CONSTRAINT pk_rider_board PRIMARY KEY (fk_rider_id,fk_skateboard_id)
+  PRIMARY KEY (fk_rider_id, fk_skateboard_id)
 );
+
 -- -------------------------------------
 -- --Populate Tables--------------------
 -- -------------------------------------
