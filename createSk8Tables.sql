@@ -31,7 +31,8 @@ CREATE TABLE sk8_brand (
   id INT NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   img_url varchar(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE (name)
 )ENGINE=InnoDB;
 
 
@@ -93,8 +94,6 @@ CREATE TABLE sk8_deck_inv(
 -- -Relational Tables----
 CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
-  assembled DATE NOT NULL DEFAULT GETDATE(),
-  dissasembled DATE DEFAULT NULL,
   img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
   fk_deck_id INT NOT NULL,
   fk_truck_id INT NOT NULL,
@@ -119,15 +118,27 @@ CREATE TABLE sk8_riders_skateboards(
 -- -------------------------------------
 
 INSERT INTO
-    sk8_brand (name, colname2, colname3)
+    sk8_brand (name, img_url)
 VALUES 
-    ('foo1', 'bar1', 'waa1'), 
-    ('foo2', 'bar2', 'waa2'), 
-    ('foo3', 'bar3', 'waa3');
+    ('Sector 9', 'https://www.edgeboardshop.com/modules/store/attribute_images/609/21520/2720380_med.png'),
+    ('Penny', 'http://skin.pennyskateboards.com/frontend/penny/default/assets/img/logo-greydkdisc.png'),
+    ('Shark Wheels', 'http://www.sharkwheel.com/wp-content/uploads/2015/05/1-Shark-Wheel-Green-Logo.png'),
+    ('Gullwing', 'https://www.edgeboardshop.com/modules/store/attribute_images/609/24574/2647538_med.jpg'),
+    ('Cult Classic', NULL);
 
 INSERT INTO
-    tablename (colname1, colname2, colname3)
+    sk8_riders (name, img_url)
 VALUES 
-    ('foo1', 'bar1', 'waa1'), 
-    ('foo2', 'bar2', 'waa2'), 
-    ('foo3', 'bar3', 'waa3');
+    ('Brandon', 'https://lh3.googleusercontent.com/-zMjLf3TGzf4/AAAAAAAAAAI/AAAAAAAAABE/waQ_QZ7E7Fs/s120-c/photo.jpg'); 
+
+INSERT INTO
+    sk8_riders (name)
+VALUES
+    ('Doris');
+
+INSERT INTO
+  sk8_wheel_type (name,diamater,durometer,fk_brand_id)
+VALUES
+  ('California Roll',60,78,3),
+  ('CC Longboard Wheels',70,80,5);
+
