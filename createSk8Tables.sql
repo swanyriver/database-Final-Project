@@ -60,7 +60,7 @@ CREATE TABLE sk8_deck_type(
   fk_brand_id INT NOT NULL,
   length INT NOT NULL,
   width INT NOT NULL,
-  description varchar(511) NOT NULL
+  description varchar(511) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
 );
@@ -100,9 +100,9 @@ CREATE TABLE  sk8_skateboards(
   fk_truck_id INT NOT NULL,
   fk_wheel_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (fk_deck_id) REFERENCES (sk8_deck_inv),
-  FOREIGN KEY (fk_truck_id) REFERENCES (sk8_truck_inv),
-  FOREIGN KEY (fk_wheel_id) REFERENCES (sk8_wheel_inv),
+  FOREIGN KEY (fk_deck_id) REFERENCES sk8_deck_inv(id),
+  FOREIGN KEY (fk_truck_id) REFERENCES sk8_truck_inv(id),
+  FOREIGN KEY (fk_wheel_id) REFERENCES sk8_wheel_inv(id),
 );
 
 CREATE TABLE sk8_riders_skateboards(
