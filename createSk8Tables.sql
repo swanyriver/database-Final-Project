@@ -1,6 +1,7 @@
 -- -------------------------------------
 -- ensure starting brand new tables ----
 -- -------------------------------------
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `sk8_riders`;
 DROP TABLE IF EXISTS `sk8_brand`;
 DROP TABLE IF EXISTS `sk8_wheel_type`;
@@ -11,6 +12,7 @@ DROP TABLE IF EXISTS `sk8_truck_inv`;
 DROP TABLE IF EXISTS `sk8_deck_inv`;
 DROP TABLE IF EXISTS `sk8_skateboards`;
 DROP TABLE IF EXISTS `sk8_riders_skateboards`;
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 -- -------------------------------------
@@ -96,7 +98,7 @@ CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
   assembled DATE NOT NULL,
   dissasembled DATE DEFAULT NULL,
-  img_url varchar(255) DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
+  img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
   fk_deck_id INT NOT NULL,
   fk_truck_id INT NOT NULL,
   fk_wheel_id INT NOT NULL,
@@ -118,3 +120,17 @@ CREATE TABLE sk8_riders_skateboards(
 -- -------------------------------------
 -- --Populate Tables--------------------
 -- -------------------------------------
+
+INSERT INTO
+    sk8_brand (name, colname2, colname3)
+VALUES 
+    ('foo1', 'bar1', 'waa1'), 
+    ('foo2', 'bar2', 'waa2'), 
+    ('foo3', 'bar3', 'waa3');
+
+INSERT INTO
+    tablename (colname1, colname2, colname3)
+VALUES 
+    ('foo1', 'bar1', 'waa1'), 
+    ('foo2', 'bar2', 'waa2'), 
+    ('foo3', 'bar3', 'waa3');
