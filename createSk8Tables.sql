@@ -191,3 +191,13 @@ VALUES
   (1,'Blue'),
   (2,'Red/Polka Dot');
 
+INSERT INTO
+  sk8_skateboards (name,fk_deck_id,fk_truck_id,fk_wheel_id)
+VALUES
+  ('little blue',1,2,1),
+  ('widowmaker',2,3,3);
+
+INSERT INTO
+  sk8_riders_skateboards(fk_skateboard_id,fk_rider_id)
+VALUES
+  (1,1);
