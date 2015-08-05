@@ -32,6 +32,7 @@
       <li id="riders_tab"><a href="riders.php">Riders</a></li>
       <li id="skateboards_tab"><a href="skateboards.php">SkateBoards</a></li>
       <li id="inventory_tab"><a href="inventory.php">Invetory</a></li>
+      <li id="build_tab"><a href="build.php">Build a Skateboard</a></li>
     </ul>
   </div><!-- /.container-fluid -->
 </nav>
