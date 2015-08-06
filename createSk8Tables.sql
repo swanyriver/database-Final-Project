@@ -23,14 +23,14 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE sk8_riders (
   id INT NOT NULL AUTO_INCREMENT,
   rider_name varchar(255) NOT NULL,
-  img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/profileshadow.jpg',
+  rider_img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/profileshadow.jpg',
   PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 CREATE TABLE sk8_brand (
   id INT NOT NULL AUTO_INCREMENT,
   brand_name varchar(255) NOT NULL,
-  img_url varchar(255),
+  brand_img_url varchar(255),
   PRIMARY KEY (id),
   UNIQUE (brand_name)
 )ENGINE=InnoDB;
@@ -41,7 +41,7 @@ CREATE TABLE sk8_wheel_type(
   id INT NOT NULL AUTO_INCREMENT,
   wheel_name varchar(255) NOT NULL,
   fk_brand_id INT NOT NULL,
-  diamater INT NOT NULL,
+  diameter INT NOT NULL,
   durometer INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (fk_brand_id) REFERENCES sk8_brand (id)
@@ -101,7 +101,7 @@ CREATE TABLE sk8_deck_inv(
 CREATE TABLE  sk8_skateboards(
   id INT NOT NULL AUTO_INCREMENT,
   board_name varchar(255) NOT NULL,
-  img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
+  board_img_url varchar(255) NOT NULL DEFAULT 'http://web.engr.oregonstate.edu/~swansonb/dataFinal/skateboard_line_art.png',
   fk_deck_id INT NOT NULL,
   fk_truck_id INT NOT NULL,
   fk_wheel_id INT NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE sk8_riders_skateboards(
 -- -------------------------------------
 
 INSERT INTO
-    sk8_brand (brand_name, img_url)
+    sk8_brand (brand_name, brand_img_url)
 VALUES 
     ('Sector 9', 'https://www.edgeboardshop.com/modules/store/attribute_images/609/21520/2720380_med.png'),
     ('Penny', 'http://skin.pennyskateboards.com/frontend/penny/default/assets/img/logo-greydkdisc.png'),
@@ -147,7 +147,7 @@ VALUES
     ('Cult Classic', NULL);
 
 INSERT INTO
-    sk8_riders (rider_name, img_url)
+    sk8_riders (rider_name, rider_img_url)
 VALUES 
     ('Brandon', 'https://lh3.googleusercontent.com/-zMjLf3TGzf4/AAAAAAAAAAI/AAAAAAAAABE/waQ_QZ7E7Fs/s120-c/photo.jpg'); 
 
@@ -157,7 +157,7 @@ VALUES
     ('Doris');
 
 INSERT INTO
-  sk8_wheel_type (wheel_name,diamater,durometer,fk_brand_id)
+  sk8_wheel_type (wheel_name,diameter,durometer,fk_brand_id)
 VALUES
   ('California Roll',60,78,3),
   ('CC Longboard Wheels',70,80,5),
