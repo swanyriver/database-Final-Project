@@ -15,6 +15,8 @@ if ($mysqli->connect_errno || $mysqli->connect_error)
   exit();
 }
 
+$brand_selector=getBrandSelector($mysqli);
+
 include "headandnav.php";
 echo "<script> document.getElementById('inventory_tab').classList.add('active'); </script>";
 

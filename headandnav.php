@@ -36,3 +36,13 @@
     </ul>
   </div><!-- /.container-fluid -->
 </nav>
+
+<?php
+
+if(isset($_GET['message'])){
+  $mclass = "message";
+  if(isset($_GET['error'])) $mclass = $mclass." error";
+  echo "<div class=\"$mclass\"> {$_GET['message']} </div>";
+}
+
+?>
