@@ -2,7 +2,7 @@
 
 function getBrandSelector($mysqli){
   $select= "
-    <select>
+    <select name=\"brand_id\">
 
   ";
   $stmt=$mysqli->prepare("SELECT id,brand_name from sk8_brand");

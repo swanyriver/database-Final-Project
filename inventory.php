@@ -44,18 +44,43 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
   
 </form>
 
+
+<div class="container-fluid">
+  <div class="row" id="inventory_container">
+    <div class="col-md-4">
+      <h3 class="inventory_heading">Decks</h3>
+<!--create new deck-->
+<div class="panel panel-default addPanel">
+  <div class="panel-heading">Add New Deck</div>
+  <div class="panel-body">
+    <form class="form-inline" action="addinv.php" method="POST">
+      <div class="form-group">
+        <label>Brand:</label>
+        <?php echo getBrandSelector($mysqli) ?>
+      </div>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group">
+        <label>Length:</label>
+        <input type="number" class="form-control" name="length">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" class="form-control" name="description">
+      </div>
+      <div class="form-group">
+        <label>Color:</label>
+        <input type="text" class="form-control" name="color">
+      </div>
+      <input type="hidden" name="table" value="deck">
+      <button type="submit" class="btn btn-default">Add Deck</button>
+    </form>
+  </div>
+</div>
+
 <?php
-echo "<div class=\"container-fluid\">
-  <div class=\"row\" id=\"inventory_container\">
-    <div class=\"col-md-4\">
-      <h3 class=\"inventory_heading\">Decks</h3>
-";
-
-#create new deck
-
-#add deck option
-
-
 #generate decks
 $query =
   "SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
@@ -65,11 +90,35 @@ $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
   makeDeckInv($row);
 }
-
-echo "    </div>
-    <div class=\"col-md-4\">
-      <h3 class=\"inventory_heading\">Trucks</h3>
-";
+?>
+</div>
+<div class="container-fluid">
+  <div class="row" id="inventory_container">
+    <div class="col-md-4">
+      <h3 class="inventory_heading">Trucks</h3>
+<!--create new truck-->
+<div class="panel panel-default addPanel">
+  <div class="panel-heading">Add New Truck</div>
+  <div class="panel-body">
+    <form class="form-inline" action="addinv.php" method="POST">
+      <div class="form-group">
+        <label>Brand:</label>
+        <?php echo getBrandSelector($mysqli) ?>
+      </div>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group">
+        <label>Width:</label>
+        <input type="number" class="form-control" name="width">
+      </div>
+      <input type="hidden" name="table" value="truck">
+      <button type="submit" class="btn btn-default">Add Truck</button>
+    </form>
+  </div>
+</div>
+<?php
 #generate trucks
 $query =
   "SELECT T.id, TT.truck_name, TT.width, B.brand_name, B.brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
@@ -79,11 +128,44 @@ $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
   makeTruckInv($row);
 }
+?>
+</div>
+<div class="container-fluid">
+  <div class="row" id="inventory_container">
+    <div class="col-md-4">
+      <h3 class="inventory_heading">Wheels</h3>
+<!--create new wheel-->
+<div class="panel panel-default addPanel">
+  <div class="panel-heading">Add New Wheels</div>
+  <div class="panel-body">
+    <form class="form-inline" action="addinv.php" method="POST">
+      <div class="form-group">
+        <label>Brand:</label>
+        <?php echo getBrandSelector($mysqli) ?>
+      </div>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group">
+        <label>Diameter:</label>
+        <input type="number" class="form-control" name="diameter">
+      </div>
+      <div class="form-group">
+        <label>Durometer:</label>
+        <input type="number" class="form-control" name="durometer">
+      </div>
+      <div class="form-group">
+        <label>Color:</label>
+        <input type="text" class="form-control" name="color">
+      </div>
+      <input type="hidden" name="table" value="wheel">
+      <button type="submit" class="btn btn-default">Add Wheels</button>
+    </form>
+  </div>
+</div>
 
-echo "</div>
-    <div class=\"col-md-4\">
-      <h3 class=\"inventory_heading\">Wheels</h3>
-      ";
+<?php
 #generate wheels
 $query = 
   "SELECT W.id, W.color, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name, B.brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
