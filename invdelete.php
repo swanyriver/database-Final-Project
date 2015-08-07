@@ -7,12 +7,6 @@ include "globalConstants.php";
 include "sqloperationfunctions.php";
 
 
-
-//check if equipment is being used in skateboard
-/*$result = $mysqli->query("SELECT count(*), id, name from sk8_skateboards where fk_{$table}_id=?");
-$inSkateboard = $result->fetch();
-echo $inSkateboard;*/
-
 if (!in_array($_POST['table'], $itemtables)) {
     fishy("how did you ask to delete from:{$_POST['table']}",'inventory');
 }
@@ -53,8 +47,4 @@ if($mysqli->errno == 1451){
   fishy("database error: {$mysqli->errno}",'inventory');
 }
 
-
-
-
-
-
+?>

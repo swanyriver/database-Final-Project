@@ -46,6 +46,6 @@
     font-weight: bold;
 }
 
-.skateboardPanel .inventorycontrols{
+.skateboardPanel .inventorycontrols, .buildPanel .inventorycontrols{
     display:none;
 }

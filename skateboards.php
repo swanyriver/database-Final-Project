@@ -28,7 +28,7 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
     #get skateboards
     #select all parts,details, and brands of a skateboard
     $query =
-    "SELECT  SK.board_name, SK.board_img_url, 
+    "SELECT SK.id, SK.board_name, SK.board_img_url, 
             DT.deck_name, DT.length, DT.description, DI.color as deckColor, 
             DB.deck_brand_name, DB.deck_brand_img_url,
             TT.truck_name, TT.width, TB.truck_brand_name, TB.truck_brand_img_url,
@@ -50,17 +50,24 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
 
     $result = $mysqli->query($query);
     while($row=$result->fetch_assoc()){
+      $id=$row['id'];
       $row['id']=-1;
       $row['fkid']=-1;
-/*      echo "
-      <div class=\"panel panel-default\">
-        <div class=\"panel-heading\">Panel Header</div>
-        <div class=\"panel-body\">
-        <div class=\"row\">
-        <div class=\"col-md-4\">";
-      ";*/
+
       echo "<div class=\"panel panel-default\">";
-      echo "<div class=\"panel-heading\">{$row['board_name']}</div>";
+      echo "<div class=\"panel-heading\">{$row['board_name']}";
+      echo" <span class=\"inventorycontrols\" > 
+      
+      <form action=\"disasmble.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Disasemble Skateboard\">
+      <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
+      <button type=\"submit\">
+        <span class=\"glyphicon glyphicon-wrench\" > </span>
+        </button>
+      </form>
+
+    </span>";
+
+      echo "</div> <!-- heading -->";
       echo "<div class=\"panel-body\">";
       echo "<img class=\"boardimage\" src=\"{$row['board_img_url']}\"></img>";
       echo "<div class=\"container-fluid\"> <div class=\"row\">";

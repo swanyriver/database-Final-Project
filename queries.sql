@@ -51,7 +51,7 @@ inner join sk8_wheel_inv WI on SK.fk_wheel_id = WI.id
 inner join sk8_wheel_type WT on WI.fk_wheel_id = WT.id;
 
 #select all parts,details, and brands of a skateboard
-SELECT  SK.board_name, SK.board_img_url, 
+SELECT  SK.ID, SK.board_name, SK.board_img_url, 
         DT.deck_name, DT.length, DT.description, DI.color as deckColor, 
         DB.deck_brand_name, DB.deck_brand_img_url,
         TT.truck_name, TT.width, TB.truck_brand_name, TB.truck_brand_img_url,
