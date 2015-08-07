@@ -21,7 +21,39 @@ echo "<script> document.getElementById('build_tab').classList.add('active'); </s
 
  ?>
 
+<script type="text/javascript">
+  
+  function buildselect(panel){
+    console.log('clicked')
+    console.log(panel.getAttribute('data-id'),panel);
+  }
 
+  function hello(msg){
+    console.log(msg);
+  }
+
+  window.onload=function setonclicks () {
+
+    console.log('hello');
+
+    decks=document.getElementsByClassName('deckbuild');
+    for (var i = decks.length - 1; i >= 0; i--) {
+      //decks[i].setAttribute("onclick","click(this,'deck')");
+      decks[i].setAttribute("onclick","buildselect(this)");
+    };
+
+    trucks=document.getElementsByClassName('truckbuild');
+    for (var i = trucks.length - 1; i >= 0; i--) {
+      trucks[i].setAttribute("onclick","buildselect(this)");
+    };
+
+    wheels=document.getElementsByClassName('wheelbuild');
+    for (var i = wheels.length - 1; i >= 0; i--) {
+      wheels[i].setAttribute("onclick","buildselect(this)");
+    };
+  }
+
+</script>
 
 
 
@@ -41,7 +73,7 @@ $query =
   INNER JOIN sk8_brand B on DT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeDeckInv($row, 'buildPanel');
+  makeDeckInv($row, 'buildPanel deckbuild');
 }
 ?>
 </div>
@@ -58,7 +90,7 @@ $query =
   INNER JOIN sk8_brand B on TT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeTruckInv($row, 'buildPanel');
+  makeTruckInv($row, 'buildPanel truckbuild');
 }
 ?>
 </div>
@@ -77,7 +109,7 @@ $query =
   INNER JOIN sk8_brand B on WT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeWheelInv($row, 'buildPanel');
+  makeWheelInv($row, 'buildPanel wheelbuild');
 }
 
 echo" </div>
