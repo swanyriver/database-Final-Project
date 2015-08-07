@@ -33,3 +33,14 @@
     color: green;
     font-weight: bold;
 }
+
+.addPanel .panel-heading {
+    cursor: pointer;
+}
+
+.addPanel .panel-heading div {
+    float: right;
+}
+.addPanel .panel-heading .glyphicon{
+    font-weight: bold;
+}

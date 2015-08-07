@@ -29,12 +29,12 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
     document.getElementById('colorfkid').value=fkid;
     $("#colorModal").modal();
   }
-  function toggleinputs(group,show){
+  function toggleinputs(group){
     panel=document.getElementById(group+'form');
     left=document.getElementById(group+'left');
     down=document.getElementById(group+'down');
 
-    if(show){
+    if (panel.hasAttribute('hidden')) {
       panel.removeAttribute('hidden');
       down.removeAttribute('hidden');
       left.setAttribute('hidden', true);
@@ -66,11 +66,9 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
       <h3 class="inventory_heading">Decks</h3>
 <!--create new deck-->
 <div class="panel panel-default addPanel">
-  <div class="panel-heading">Add New Deck
-  <div id="deckleft"><span class="glyphicon glyphicon-chevron-left" 
-        onclick="toggleinputs('deck',true)"></span></div>
-  <div hidden id="deckdown"><span class="glyphicon glyphicon-chevron-down"
-        onclick="toggleinputs('deck',false)" ></span></div>
+  <div class="panel-heading" onclick="toggleinputs('deck')">Add New Deck
+  <div id="deckleft"><span class="glyphicon glyphicon-chevron-left"></span></div>
+  <div hidden id="deckdown"><span class="glyphicon glyphicon-chevron-down"></span></div>
   </div>
   <div class="panel-body" hidden id="deckform">
     <form class="form-inline" action="addinv.php" method="POST">
@@ -118,8 +116,11 @@ while($row=$result->fetch_assoc()){
       <h3 class="inventory_heading">Trucks</h3>
 <!--create new truck-->
 <div class="panel panel-default addPanel">
-  <div class="panel-heading">Add New Truck</div>
-  <div class="panel-body">
+  <div class="panel-heading" onclick="toggleinputs('truck')">Add New Trucks
+  <div id="truckleft"><span class="glyphicon glyphicon-chevron-left"></span></div>
+  <div hidden id="truckdown"><span class="glyphicon glyphicon-chevron-down"></span></div>
+  </div>
+  <div class="panel-body" hidden id="truckform">
     <form class="form-inline" action="addinv.php" method="POST">
       <div class="form-group">
         <label>Brand:</label>
@@ -156,8 +157,10 @@ while($row=$result->fetch_assoc()){
       <h3 class="inventory_heading">Wheels</h3>
 <!--create new wheel-->
 <div class="panel panel-default addPanel">
-  <div class="panel-heading">Add New Wheels</div>
-  <div class="panel-body">
+  <div class="panel-heading" onclick="toggleinputs('wheel')">Add New Wheels
+  <div id="wheelleft"><span class="glyphicon glyphicon-chevron-left"></span></div>
+  <div hidden id="wheeldown"><span class="glyphicon glyphicon-chevron-down"></span></div>
+  </div>  <div class="panel-body" hidden id="wheelform">
     <form class="form-inline" action="addinv.php" method="POST">
       <div class="form-group">
         <label>Brand:</label>
