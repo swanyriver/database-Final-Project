@@ -47,11 +47,11 @@ function getHeading($brand,$part,$id,$table,$fkid){
 
     $add      
 
-      <form action=\"invdelete.php\" method=\"post\">
+      <form action=\"invdelete.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete Item\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
       <input type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
       <button type=\"submit\">
-        <span class=\"glyphicon glyphicon-remove\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete Item\"> </span>
+        <span class=\"glyphicon glyphicon-remove\" > </span>
         </button>
       </form>
 

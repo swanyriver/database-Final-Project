@@ -12,3 +12,24 @@
     width: auto;
     opacity: 0.4;
 }
+
+.inventorycontrols {
+    float: right;
+}
+.inventorycontrols button {
+    border: 0;
+    background: none;
+}
+.inventorycontrols * {
+    display: inline;
+    margin-left: 10px;
+}
+
+.glyphicon-remove {
+    color: red;
+    font-weight: bold;
+}
+.glyphicon-plus {
+    color: green;
+    font-weight: bold;
+}

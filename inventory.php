@@ -29,6 +29,21 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
     document.getElementById('colorfkid').value=fkid;
     $("#colorModal").modal();
   }
+  function toggleinputs(group,show){
+    panel=document.getElementById(group+'form');
+    left=document.getElementById(group+'left');
+    down=document.getElementById(group+'down');
+
+    if(show){
+      panel.removeAttribute('hidden');
+      left.removeAttribute('hidden');
+      down.setAttribute('hidden');
+    }else {
+      panel.setAttribute('hidden');
+      left.setAttribute('hidden');
+      down.removeAttribute('hidden');
+    }
+  }
 </script>
 
 <form class="form-inline" action="addbrand.php" method="POST">
@@ -51,29 +66,35 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
       <h3 class="inventory_heading">Decks</h3>
 <!--create new deck-->
 <div class="panel panel-default addPanel">
-  <div class="panel-heading">Add New Deck</div>
-  <div class="panel-body">
+  <div class="panel-heading">Add New Deck
+  <span class="glyphicon glyphicon-chevron-left" id="deckleft"
+        onclick="toggleinputs(deck,true)"></span>
+  </div>
+  <span class="glyphicon glyphicon-chevron-down" id="deckdown"
+        onclick="toggleinputs(deck,false)"></span>
+  </div>
+  <div class="panel-body" hidden id="deckform">
     <form class="form-inline" action="addinv.php" method="POST">
       <div class="form-group">
         <label>Brand:</label>
         <?php echo getBrandSelector($mysqli) ?>
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Name:</label>
         <input type="text" class="form-control" name="name">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Length:</label>
         <input type="number" class="form-control" name="length">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Description:</label>
         <input type="text" class="form-control" name="description">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Color:</label>
         <input type="text" class="form-control" name="color">
-      </div>
+      </div><br>
       <input type="hidden" name="table" value="deck">
       <button type="submit" class="btn btn-default">Add Deck</button>
     </form>
@@ -104,15 +125,15 @@ while($row=$result->fetch_assoc()){
       <div class="form-group">
         <label>Brand:</label>
         <?php echo getBrandSelector($mysqli) ?>
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Name:</label>
         <input type="text" class="form-control" name="name">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Width:</label>
         <input type="number" class="form-control" name="width">
-      </div>
+      </div><br>
       <input type="hidden" name="table" value="truck">
       <button type="submit" class="btn btn-default">Add Truck</button>
     </form>
@@ -142,23 +163,23 @@ while($row=$result->fetch_assoc()){
       <div class="form-group">
         <label>Brand:</label>
         <?php echo getBrandSelector($mysqli) ?>
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Name:</label>
         <input type="text" class="form-control" name="name">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Diameter:</label>
         <input type="number" class="form-control" name="diameter">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Durometer:</label>
         <input type="number" class="form-control" name="durometer">
-      </div>
+      </div><br>
       <div class="form-group">
         <label>Color:</label>
         <input type="text" class="form-control" name="color">
-      </div>
+      </div><br>
       <input type="hidden" name="table" value="wheel">
       <button type="submit" class="btn btn-default">Add Wheels</button>
     </form>
