@@ -69,7 +69,7 @@ function makeDeckInv($invAssoc){
     <div class=\"panel-body inventoryPanelBody\">
     <img src=\"{$invAssoc['brand_img_url']}\" class=\"inv_back_brand\">
     <span class=\"category\">Length:</span> <span class=\"info\" >{$invAssoc['length']} inches</span>
-    <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['color']}</span>
+    <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['deckColor']}</span>
     <br><span class=\"category\">Description:</span> <span class=\"info\" >{$invAssoc['description']}</span>
 
     </div>
@@ -104,7 +104,7 @@ function makeWheelInv($invAssoc){
     <img src=\"{$invAssoc['brand_img_url']}\" class=\"inv_back_brand\">
     <span class=\"category\">Diameter:</span> <span class=\"info\" >{$invAssoc['diameter']}mm</span>
     <br><span class=\"category\">Durometer:</span> <span class=\"info\" >{$invAssoc['durometer']}A</span>
-    <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['color']}</span>
+    <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['wheelColor']}</span>
 
     </div>
   </div>

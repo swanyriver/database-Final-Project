@@ -101,7 +101,7 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
 <?php
 #generate decks
 $query =
-  "SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
+  "SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
   INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
   INNER JOIN sk8_brand B on DT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
@@ -191,7 +191,7 @@ while($row=$result->fetch_assoc()){
 <?php
 #generate wheels
 $query = 
-  "SELECT W.id, W.color, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name, B.brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
+  "SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name, B.brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
   INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
   INNER JOIN sk8_brand B on WT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
