@@ -16,13 +16,37 @@ function getBrandSelector($mysqli){
   return $select;
 }
 
+function getAddButton($id,$table,$fkid){
+
+  if($table=='truck') return "<form action=\"addinv.php\" method=\"post\">
+      <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
+      <input type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
+      <input type=\"hidden\" name=\"fkid\" value=\"{$fkid}\"></input>
+      <button type=\"submit\">
+        <span class=\"glyphicon glyphicon-plus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add another of this item\"> </span>
+        </button>
+      </form>";
+
+  return "
+    <button onclick=\"colorform( $id , '$table' , $fkid )\">
+      <span class=\"glyphicon glyphicon-plus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add another of this item\"> </span>
+      </button>
+  ";
+
+}
+
 //todo pass id and appropriate phps for edit or delete
-function getHeading($brand,$part,$id,$table){
-return "
+function getHeading($brand,$part,$id,$table,$fkid){
+  $add = getAddButton($id,$table,$fkid);
+  return "
     <div class=\"panel-heading\">
     <span class=\"brandName\"> $brand:</span> 
     <span class=\"partName\">$part</span>
     <span class=\"inventorycontrols\" > 
+      
+
+    $add      
+
       <form action=\"invdelete.php\" method=\"post\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
       <input type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
@@ -30,13 +54,14 @@ return "
         <span class=\"glyphicon glyphicon-remove\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete Item\"> </span>
         </button>
       </form>
+
     </span>
     </div>";
 }
 
 function makeDeckInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['deck_name'], $invAssoc['id'],'deck');
+  $heading = getHeading($invAssoc['brand_name'],$invAssoc['deck_name'], $invAssoc['id'],'deck',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
@@ -54,7 +79,7 @@ function makeDeckInv($invAssoc){
 
 function makeTruckInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['truck_name'],$invAssoc['id'],'truck');
+  $heading = getHeading($invAssoc['brand_name'],$invAssoc['truck_name'],$invAssoc['id'],'truck',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
@@ -70,7 +95,7 @@ function makeTruckInv($invAssoc){
 
 function makeWheelInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['wheel_name'],$invAssoc['id'],'wheel');
+  $heading = getHeading($invAssoc['brand_name'],$invAssoc['wheel_name'],$invAssoc['id'],'wheel',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">

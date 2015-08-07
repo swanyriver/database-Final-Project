@@ -22,6 +22,15 @@ include "headandnav.php";
 echo "<script> document.getElementById('inventory_tab').classList.add('active'); </script>";
 ?>
 
+<script type="text/javascript">
+  function colorform ( id , table , fkid ) {
+    document.getElementById('colorid').value=id;
+    document.getElementById('colortable').value=table;
+    document.getElementById('colorfkid').value=fkid;
+    $("#colorModal").modal();
+  }
+</script>
+
 <form class="form-inline" action="addbrand.php" method="POST">
   <button type="submit" class="btn btn-default">Add Brand</button>
   <div class="form-group">
@@ -49,7 +58,7 @@ echo "<div class=\"container-fluid\">
 
 #generate decks
 $query =
-  "SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url FROM sk8_deck_inv D
+  "SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
   INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
   INNER JOIN sk8_brand B on DT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
@@ -63,7 +72,7 @@ echo "    </div>
 ";
 #generate trucks
 $query =
-  "SELECT T.id, TT.truck_name, TT.width, B.brand_name, B.brand_img_url FROM sk8_truck_inv T
+  "SELECT T.id, TT.truck_name, TT.width, B.brand_name, B.brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
   INNER JOIN sk8_truck_type TT on T.fk_truck_id = TT.id 
   INNER JOIN sk8_brand B on TT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
@@ -77,7 +86,7 @@ echo "</div>
       ";
 #generate wheels
 $query = 
-  "SELECT W.id, W.color, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name, B.brand_img_url FROM sk8_wheel_inv W
+  "SELECT W.id, W.color, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name, B.brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
   INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
   INNER JOIN sk8_brand B on WT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
@@ -93,4 +102,34 @@ echo" </div>
 ?>
 
 </body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="colorModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">What color is it?</h4>
+      </div>
+      <div class="modal-body">
+      <form action="addinv.php" method="post">
+      <input id="colorid" type="hidden" name="id" value=""></input>
+      <input id="colortable" type="hidden" name="table" value=""></input>
+      <input id="colorfkid" type="hidden" name="fkid" value=""></input>
+      <input type="text" name="color"></input>
+      <button type="submit">
+        <span class="glyphicon glyphicon-plus"> </span>
+        </button>
+      </form>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
 </html>

@@ -20,6 +20,16 @@
 
     <!-- my CSS -->
     <link href="style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+      $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    });
+      $(function () {
+    $('[data-toggle="popover"]').popover()
+    });
+    </script>
+
 </head>
 <body>
 
