@@ -23,10 +23,10 @@ return "
     <span class=\"brandName\"> $brand:</span> 
     <span class=\"partName\">$part</span>
     <span class=\"inventorycontrols\" > 
-      <form action=\"invdelete.php\" method=\"POST\">
-      <inpt type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
-      <inpt type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
-      <button type=\"submit\"><span class=\"glyphicon glyphicon-remove\"></span> </button>
+      <form action=\"invdelete.php\" method=\"post\">
+      <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
+      <input type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
+      <button type=\"submit\">delete item</button>
       </form>
     </span>
     </div>";

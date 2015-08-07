@@ -17,8 +17,9 @@ function redirect($message){
   $path = explode('/', $_SERVER['PHP_SELF'], -1);
   $path = implode('/',$path);
   $redirect = "http://" . $_SERVER['HTTP_HOST'] . $path;
-  if ($message) $message="?$message=".$message
+  if ($message) $message="?message=".$message;
   header("Location: {$redirect}/inventory.php{$message}", true);
+  echo "{$redirect}/inventory.php{$message}";
   exit();
 }
 
@@ -27,7 +28,10 @@ function fishy($error){
   redirect($msg . '&error=true');
 }
 
-//if(!isset($_POST['redirect'])){}
+//check if equipment is being used in skateboard
+/*$result = $mysqli->query("SELECT count(*), id, name from sk8_skateboards where fk_{$table}_id=?");
+$inSkateboard = $result->fetch();
+echo $inSkateboard;*/
 
 $tables = array("wheel","truck","deck");
 if (!in_array($_POST['table'], $tables)) {
@@ -36,36 +40,42 @@ if (!in_array($_POST['table'], $tables)) {
 
 $table = $_POST['table'];
 
-//get type id
-$typeStmt=$mysqli->prepare("SELECT fk_{$table}_id from sk8_{$table}_inv WHERE id=?");
-$typeStmt->bind_param('i',$_POST['id']);
-$typeStmt->execute();
-$typeStmt->bind_result($typeID);
-$typeStmt->fetch();
-$typeStmt->close();
-
-
 //delete item
 $delStmt=$mysqli->prepare("DELETE from sk8_{$table}_inv WHERE id=?");
 $delStmt->bind_param('i',$_POST['id']);
 $delStmt->execute();
-$delStmt->close();
 
-
-//check that type is still being used
-$crStmt = $mysqli->prepare("SELECT COUNT(*) FROM sk8_{$table}_inv WHERE id = ?");
-$crStmt->bind_param("i",$typeID);
-$crStmt->execute();
-$crStmt->bind_result($itemCount);
-$crStmt->fetch();
-$crStmt->close();
-
-//remove type if not being used
-if(!$itemCount){
-  $delStmt=$mysqli->prepare("DELETE from sk8_{$table}_inv WHERE id=?");
-  $delStmt->bind_param('i',$typeID);
-  $delStmt->execute();
+//foriegn key constraint violated
+if($mysqli->errno == 1451){
   $delStmt->close();
+
+  $skStmt = $mysqli->prepare("SELECT id,board_name from sk8_skateboards where fk_{$table}_id=?");
+  $skStmt->bind_param('i',$_POST['id']);
+  $skStmt->execute();
+  $skStmt->bind_result($id,$name);
+  $skStmt->fetch();
+  $skStmt->close();
+
+  echo $id,$name;
+  exit();
+
+
+} else if(!$mysqli->errno){
+  $delStmt->close();
+  redirect('Item Deleted');
+} else {
+  $delStmt->close();
+  fishy("database error: {$mysqli->errno}");
 }
 
-redirect('');
+/*echo "sqli" . $mysqli->errno . $mysqli->error ."\n"; 
+echo "stmt" . $delStmt->errno . $delStmt->error."\n";
+
+$delStmt->close();
+
+echo "sqli" . $mysqli->errno . $mysqli->error ."\n"; 
+echo "stmt" . $delStmt->errno . $delStmt->error."\n";*/
+
+
+
+
