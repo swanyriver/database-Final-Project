@@ -26,7 +26,9 @@ return "
       <form action=\"invdelete.php\" method=\"post\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
       <input type=\"hidden\" name=\"table\" value=\"{$table}\"></input>
-      <button type=\"submit\">delete item</button>
+      <button type=\"submit\">
+        <span class=\"glyphicon glyphicon-remove\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete Item\"> </span>
+        </button>
       </form>
     </span>
     </div>";

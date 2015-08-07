@@ -5,6 +5,7 @@ ini_set('display_errors', 'On');
 header('Content-Type: text/html');
 include "storedInfo.php"; //contains hostname/username/password/databasename
 include "htmlgenerators.php";
+include "globalConstants.php";
 
 //connect to database with created mysqli object
 $mysqli = new mysqli($hostname, $Username, $Password, $DatabaseName);
@@ -19,13 +20,21 @@ $brand_selector=getBrandSelector($mysqli);
 
 include "headandnav.php";
 echo "<script> document.getElementById('inventory_tab').classList.add('active'); </script>";
+?>
 
 
+<?php
 echo "<div class=\"container-fluid\">
   <div class=\"row\" id=\"inventory_container\">
     <div class=\"col-md-4\">
       <h3 class=\"inventory_heading\">Decks</h3>
 ";
+
+#create new deck
+
+#add deck option
+
+
 #generate decks
 $query =
   "SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, B.brand_name, B.brand_img_url FROM sk8_deck_inv D
