@@ -11,7 +11,14 @@ if (!in_array($_POST['table'], $itemtables)) {
     fishy("how did you ask to add to:{$_POST['table']}",'inventory');
 }
 
-if($_POST['brandid']=$new_brand && (!isset($_POST['brand_name'])  || $_POST['brand_name']=='')){
+
+
+
+?>
+
+
+
+<?php /*if($_POST['brandid']=$new_brand && (!isset($_POST['brand_name'])  || $_POST['brand_name']=='')){
   echo"
   <html>
   <body>
@@ -33,8 +40,5 @@ echo"
   </form>
   </body>
   ";
-}
-
-
-
+}*/
 ?>

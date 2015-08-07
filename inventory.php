@@ -22,6 +22,18 @@ include "headandnav.php";
 echo "<script> document.getElementById('inventory_tab').classList.add('active'); </script>";
 ?>
 
+<form class="form-inline" action="addbrand.php" method="POST">
+  <button type="submit" class="btn btn-default">Add Brand</button>
+  <div class="form-group">
+    <label for="brandnameinput">Brand Name</label>
+    <input type="text" class="form-control" id="brandnameinput" name="brand_name">
+  </div>
+  <div class="form-group">
+    <label for="brandurlinput">Image URL</label>
+    <input type="text" class="form-control" id="brandurlinput" name="brand_url">
+  </div>
+  
+</form>
 
 <?php
 echo "<div class=\"container-fluid\">
