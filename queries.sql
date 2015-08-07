@@ -72,4 +72,8 @@ inner join (select DT.id, B.brand_name as deck_brand_name, B.brand_img_url as de
 inner join sk8_deck_type DT on DT.fk_brand_id = B.id) DB on DT.id = DB.id;
 
 
+-- deletion queries --------
 
+DELETE from sk8_[deck/truck/wheel]_inv WHERE id=[]
+-- delete type if there are no more instances
+delete from sk8_[deck/truck/wheel]_type where id not in (select fk_[deck/truck/wheel]_id from sk8_[deck/truck/wheel]_inv);

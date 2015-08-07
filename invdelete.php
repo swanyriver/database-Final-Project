@@ -41,19 +41,19 @@ if($mysqli->errno == 1451){
 
 } else if(!$mysqli->errno){
   $delStmt->close();
+
+  //delete type if there are no more instances of it
+  $delStmt=$mysqli->prepare("DELETE from sk8_{$table}_type where id not in (select fk_{$table}_id from sk8_{$table}_inv);");
+  $delStmt->execute();
+  $delStmt->close();
+
   redirect('Item Deleted','inventory');
 } else {
   $delStmt->close();
   fishy("database error: {$mysqli->errno}",'inventory');
 }
 
-/*echo "sqli" . $mysqli->errno . $mysqli->error ."\n"; 
-echo "stmt" . $delStmt->errno . $delStmt->error."\n";
 
-$delStmt->close();
-
-echo "sqli" . $mysqli->errno . $mysqli->error ."\n"; 
-echo "stmt" . $delStmt->errno . $delStmt->error."\n";*/
 
 
 
