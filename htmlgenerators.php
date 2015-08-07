@@ -61,13 +61,13 @@ function getHeading($brand,$part,$id,$table,$fkid){
 
 function makeDeckInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['deck_name'], $invAssoc['id'],'deck',$invAssoc['fkid']);
+  $heading = getHeading($invAssoc['deck_brand_name'],$invAssoc['deck_name'], $invAssoc['id'],'deck',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
-    <img src=\"{$invAssoc['brand_img_url']}\" class=\"inv_back_brand\">
+    <img src=\"{$invAssoc['deck_brand_img_url']}\" class=\"inv_back_brand\">
     <span class=\"category\">Length:</span> <span class=\"info\" >{$invAssoc['length']} inches</span>
     <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['deckColor']}</span>
     <br><span class=\"category\">Description:</span> <span class=\"info\" >{$invAssoc['description']}</span>
@@ -79,13 +79,13 @@ function makeDeckInv($invAssoc){
 
 function makeTruckInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['truck_name'],$invAssoc['id'],'truck',$invAssoc['fkid']);
+  $heading = getHeading($invAssoc['truck_brand_name'],$invAssoc['truck_name'],$invAssoc['id'],'truck',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
-    <img src=\"{$invAssoc['brand_img_url']}\" class=\"inv_back_brand\">
+    <img src=\"{$invAssoc['truck_brand_img_url']}\" class=\"inv_back_brand\">
     <span class=\"category\">Width:</span> <span class=\"info\" >{$invAssoc['width']} inches</span>
   
     </div>
@@ -95,13 +95,13 @@ function makeTruckInv($invAssoc){
 
 function makeWheelInv($invAssoc){
 
-  $heading = getHeading($invAssoc['brand_name'],$invAssoc['wheel_name'],$invAssoc['id'],'wheel',$invAssoc['fkid']);
+  $heading = getHeading($invAssoc['wheel_brand_name'],$invAssoc['wheel_name'],$invAssoc['id'],'wheel',$invAssoc['fkid']);
 
   echo "
   <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
-    <img src=\"{$invAssoc['brand_img_url']}\" class=\"inv_back_brand\">
+    <img src=\"{$invAssoc['wheel_brand_img_url']}\" class=\"inv_back_brand\">
     <span class=\"category\">Diameter:</span> <span class=\"info\" >{$invAssoc['diameter']}mm</span>
     <br><span class=\"category\">Durometer:</span> <span class=\"info\" >{$invAssoc['durometer']}A</span>
     <br><span class=\"category\">Color:</span> <span class=\"info\" >{$invAssoc['wheelColor']}</span>
