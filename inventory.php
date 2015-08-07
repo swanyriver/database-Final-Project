@@ -36,12 +36,12 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
 
     if(show){
       panel.removeAttribute('hidden');
-      left.removeAttribute('hidden');
-      down.setAttribute('hidden');
-    }else {
-      panel.setAttribute('hidden');
-      left.setAttribute('hidden');
       down.removeAttribute('hidden');
+      left.setAttribute('hidden', true);
+    }else {
+      panel.setAttribute('hidden', true);
+      down.setAttribute('hidden', true);
+      left.removeAttribute('hidden');
     }
   }
 </script>
@@ -67,11 +67,10 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
 <!--create new deck-->
 <div class="panel panel-default addPanel">
   <div class="panel-heading">Add New Deck
-  <span class="glyphicon glyphicon-chevron-left" id="deckleft"
-        onclick="toggleinputs(deck,true)"></span>
-  </div>
-  <span class="glyphicon glyphicon-chevron-down" id="deckdown"
-        onclick="toggleinputs(deck,false)"></span>
+  <div id="deckleft"><span class="glyphicon glyphicon-chevron-left" 
+        onclick="toggleinputs('deck',true)"></span></div>
+  <div hidden id="deckdown"><span class="glyphicon glyphicon-chevron-down"
+        onclick="toggleinputs('deck',false)" ></span></div>
   </div>
   <div class="panel-body" hidden id="deckform">
     <form class="form-inline" action="addinv.php" method="POST">
