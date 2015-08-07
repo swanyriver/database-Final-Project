@@ -59,12 +59,12 @@ function getHeading($brand,$part,$id,$table,$fkid){
     </div>";
 }
 
-function makeDeckInv($invAssoc){
+function makeDeckInv($invAssoc,$panelclass){
 
   $heading = getHeading($invAssoc['deck_brand_name'],$invAssoc['deck_name'], $invAssoc['id'],'deck',$invAssoc['fkid']);
 
   echo "
-  <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
+  <div class=\"panel panel-default {$panelclass}\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
     <img src=\"{$invAssoc['deck_brand_img_url']}\" class=\"inv_back_brand\">
@@ -77,12 +77,12 @@ function makeDeckInv($invAssoc){
 ";
 }
 
-function makeTruckInv($invAssoc){
+function makeTruckInv($invAssoc, $panelclass){
 
   $heading = getHeading($invAssoc['truck_brand_name'],$invAssoc['truck_name'],$invAssoc['id'],'truck',$invAssoc['fkid']);
 
   echo "
-  <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
+  <div class=\"panel panel-default {$panelclass}\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
     <img src=\"{$invAssoc['truck_brand_img_url']}\" class=\"inv_back_brand\">
@@ -93,12 +93,12 @@ function makeTruckInv($invAssoc){
 ";
 }
 
-function makeWheelInv($invAssoc){
+function makeWheelInv($invAssoc, $panelclass){
 
   $heading = getHeading($invAssoc['wheel_brand_name'],$invAssoc['wheel_name'],$invAssoc['id'],'wheel',$invAssoc['fkid']);
 
   echo "
-  <div class=\"panel panel-default inventoryPanel\" data-id=\"{$invAssoc['id']}\">
+  <div class=\"panel panel-default {$panelclass}\" data-id=\"{$invAssoc['id']}\">
     $heading
     <div class=\"panel-body inventoryPanelBody\">
     <img src=\"{$invAssoc['wheel_brand_img_url']}\" class=\"inv_back_brand\">

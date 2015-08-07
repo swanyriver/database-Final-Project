@@ -106,7 +106,7 @@ $query =
   INNER JOIN sk8_brand B on DT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeDeckInv($row);
+  makeDeckInv($row, 'inventoryPanel');
 }
 ?>
 </div>
@@ -147,7 +147,7 @@ $query =
   INNER JOIN sk8_brand B on TT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeTruckInv($row);
+  makeTruckInv($row, 'inventoryPanel');
 }
 ?>
 </div>
@@ -196,7 +196,7 @@ $query =
   INNER JOIN sk8_brand B on WT.fk_brand_id = B.id";
 $result = $mysqli->query($query);
 while($row=$result->fetch_assoc()){
-  makeWheelInv($row);
+  makeWheelInv($row, 'inventoryPanel');
 }
 
 echo" </div>
