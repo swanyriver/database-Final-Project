@@ -56,9 +56,9 @@ if($mysqli->errno == 1451){
   $skStmt->fetch();
   $skStmt->close();
 
-  echo $id,$name;
-  exit();
+  $boardmessage = "cannot delete this part right now because it is being used on skateboard: \"$name\"";
 
+  redirect($boardmessage);
 
 } else if(!$mysqli->errno){
   $delStmt->close();
