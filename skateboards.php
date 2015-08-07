@@ -22,7 +22,7 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
 
 <div class="container-fluid">
   <div class="row" id="skateboard_container">
-    <div class="col-md-10">
+    <div class="col-md-7">
     
     <?php
     #get skateboards
@@ -62,21 +62,18 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
       echo "<div class=\"panel panel-default\">";
       echo "<div class=\"panel-heading\">{$row['board_name']}</div>";
       echo "<div class=\"panel-body\">";
+      echo "<img class=\"boardimage\" src=\"{$row['board_img_url']}\"></img>";
       echo "<div class=\"container-fluid\"> <div class=\"row\">";
 
-      echo "<div class=\"col-md-6\">
-            <img class=\"boardimage\" src=\"{$row['board_img_url']}\"></img>
-            </div>";
-
-      echo "<div class=\"col-md-2\">";
+      echo "<div class=\"col-md-4\">";
       makeDeckInv($row, 'skateboardPanel');
       echo "</div>"; #col
 
-      echo "<div class=\"col-md-2\">";
+      echo "<div class=\"col-md-4\">";
       makeTruckInv($row, 'skateboardPanel');
       echo "</div>"; #col
 
-      echo "<div class=\"col-md-2\">";
+      echo "<div class=\"col-md-4\">";
       makeWheelInv($row, 'skateboardPanel');
       echo "</div>"; #col
 
