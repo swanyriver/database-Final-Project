@@ -24,4 +24,8 @@ if($stmt->errno){
 }
 
 $stmt->close();
+
+//$last_id = $mysqli->insert_id;
+//echo "last id insterd is $last_id";
+
 redirect("{$_POST['brand_name']} added to brands",'inventory');
