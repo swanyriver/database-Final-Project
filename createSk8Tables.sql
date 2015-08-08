@@ -120,8 +120,8 @@ CREATE TABLE sk8_riders_skateboards(
   fk_rider_id INT NOT NULL,
   fk_skateboard_id INT NOT NULL,
   PRIMARY KEY (fk_rider_id, fk_skateboard_id),
-  FOREIGN KEY (fk_rider_id) REFERENCES sk8_riders(id),
-  FOREIGN KEY (fk_skateboard_id) REFERENCES sk8_skateboards(id)
+  FOREIGN KEY (fk_rider_id) REFERENCES sk8_riders(id) ON DELETE CASCADE,
+  FOREIGN KEY (fk_skateboard_id) REFERENCES sk8_skateboards(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 

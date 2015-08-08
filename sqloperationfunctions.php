@@ -18,7 +18,6 @@ function redirect($message,$page){
 }
 
 function fishy($error,$page){
-  $msg = "something fishy is going on here:".$error;
-  redirect($msg . '&error=true',$page);
+  redirect($error . '&error=true',$page);
 }
 ?>

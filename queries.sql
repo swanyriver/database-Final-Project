@@ -77,3 +77,10 @@ inner join sk8_deck_type DT on DT.fk_brand_id = B.id) DB on DT.id = DB.id;
 DELETE from sk8_[deck/truck/wheel]_inv WHERE id=[]
 -- delete type if there are no more instances
 delete from sk8_[deck/truck/wheel]_type where id not in (select fk_[deck/truck/wheel]_id from sk8_[deck/truck/wheel]_inv);
+
+
+-- update img for board, because prepared statement cant insert null or default ---
+UPDATE sk8_skateboards
+SET board_img_url=[form url]
+WHERE id=[lastinserted];
+
