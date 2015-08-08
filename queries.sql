@@ -84,3 +84,13 @@ UPDATE sk8_skateboards
 SET board_img_url=[form url]
 WHERE id=[lastinserted];
 
+
+-- table of all posible rider/skateboard combinations --
+select B.id as skid, R.id as rid from sk8_skateboards B inner join sk8_riders R;
+
+-- table of all rider skateboard combinations not yet in existince
+SELECT POSSIBLES.rid, POSSIBLES.skid 
+FROM (select B.id as skid, R.id as rid from sk8_skateboards B inner join sk8_riders R) POSSIBLES
+LEFT OUTER JOIN sk8_riders_skateboards RS
+ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
+WHERE RS.fk_rider_id IS null;
