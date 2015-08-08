@@ -12,12 +12,29 @@ if(!isset($_POST['board_name']) || $_POST['board_name']==''){
 
 //if returned here with delete key, run delet sql, then insert new board
 if(isset($_POST['dissasemble'])){
-  $stmt=$mysqli->prepare("DELETE FROM sk8_skateboards 
-                          WHERE id in (SELECT DISTINCT B.id from sk8_skateboards B 
-                          WHERE fk_deck_id = ? OR fk_truck_id = ? OR fk_wheel_id = ?) I");
+
+  $stmt=$mysqli->prepare("SELECT DISTINCT B.id from sk8_skateboards B 
+                  WHERE fk_deck_id = ? OR fk_truck_id = ? OR fk_wheel_id = ?");
   $stmt->bind_param('iii',$_POST['fk_deck_id'],$_POST['fk_truck_id'],$_POST['fk_wheel_id']);
   $stmt->execute();
+
+  $delboard= array();
+
+  $stmt->bind_result($next);
+  while ($stmt->fetch()) {
+    $delboard[]=$next;
+  }
+
   $stmt->close();
+
+
+  foreach ($delboard as $id) {
+    $stmt=$mysqli->prepare("DELETE FROM sk8_skateboards WHERE id=?");
+    $stmt->bind_param('i',$id);
+    $stmt->execute();
+    $stmt->close();
+  }
+
 }
 
 
