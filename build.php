@@ -17,24 +17,55 @@ if ($mysqli->connect_errno || $mysqli->connect_error)
 
 if(isset($_POST['available'])){
   //only show parts not on boards
-  $deckQuery ="";
-  $truckQuery="";
-  $wheelQuery="";
+  $deckQuery =
+  "SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, 
+  B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
+  INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
+  INNER JOIN sk8_brand B on DT.fk_brand_id = B.id
+  WHERE D.id NOT IN (SELECT fk_deck_id from sk8_skateboards)";
+
+  $truckQuery=
+  "SELECT T.id, TT.truck_name, TT.width, 
+  B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
+  INNER JOIN sk8_truck_type TT on T.fk_truck_id = TT.id 
+  INNER JOIN sk8_brand B on TT.fk_brand_id = B.id
+  WHERE T.id NOT IN (SELECT fk_truck_id from sk8_skateboards)";
+
+  $wheelQuery=
+  "SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, 
+  B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
+  INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
+  INNER JOIN sk8_brand B on WT.fk_brand_id = B.id
+  WHERE W.id NOT IN (SELECT fk_wheel_id from sk8_skateboards);";
+
+  $filterbutton = "<form method=\"POST\" action=\"build.php\">
+                   <button type=\"submit\" class=\"btn btn-info\" id=\"filterbutton\">
+                   <span class=\"glyphicon glyphicon-list-alt\"> </span> <span> Show All Parts </span>
+                   </button> </form>";
+
 }else {
   $deckQuery =  
-  "SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
+  "SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, 
+  B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
   INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
   INNER JOIN sk8_brand B on DT.fk_brand_id = B.id";
   
   $truckQuery=
-  "SELECT T.id, TT.truck_name, TT.width, B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
+  "SELECT T.id, TT.truck_name, TT.width, 
+  B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
   INNER JOIN sk8_truck_type TT on T.fk_truck_id = TT.id 
   INNER JOIN sk8_brand B on TT.fk_brand_id = B.id";
 
   $wheelQuery=
-  "SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
+  "SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, 
+  B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
   INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
   INNER JOIN sk8_brand B on WT.fk_brand_id = B.id";
+
+  $filterbutton = "<form method=\"POST\" action=\"build.php\"> <input type=\"hidden\" name=\"available\" value=\"true\">
+                   <button type=\"submit\" class=\"btn btn-info\" id=\"filterbutton\">
+                   <span class=\"glyphicon glyphicon-list-alt\"> </span> <span> Show Only Available Parts </span>
+                   </button> </form>";
 }
 
 
@@ -63,6 +94,13 @@ echo "<script> document.getElementById('build_tab').classList.add('active'); </s
           <div class="buildPartHolder" id="wheelPart"></div>
         </div>
       </div></div>
+      <div id="buildButtons">
+      <?php echo $filterbutton ?>
+      <button type="button" class="btn btn-success" onclick="$('#buildModal').modal()" id="build" disabled="true">
+        <span class="glyphicon glyphicon-wrench"></span>
+        <span>Build Board</span>
+      </button>
+      </div>
 
 
     </div>
@@ -89,6 +127,9 @@ echo "<script> document.getElementById('build_tab').classList.add('active'); </s
 
     if(deckkey.value && truckkey.value && wheelkey.value){
       console.log('ready');
+      document.getElementById('build').disabled=false;
+    } else {
+      document.getElementById('build').disabled=true;
     }
 
   }
@@ -176,7 +217,7 @@ echo" </div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="colorModal" role="dialog">
+<div class="modal fade" id="buildModal" role="dialog">
   <div class="modal-dialog">
   
     <!-- Modal content-->
@@ -195,9 +236,11 @@ echo" </div>
       What is it's name:<input type="text" name="board_name"></input><br>
       (Optional) URL for a picture of it<input type="text" name="board_img_url"></input>
 
-      <button type="submit">
-        <span class="glyphicon glyphicon-plus"> </span>
-        </button>
+      <br>
+      <button type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-wrench"></span>
+        <span>Build Board</span>
+      </button>  
       </form>
       </div>
     </div>

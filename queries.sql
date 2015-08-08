@@ -1,34 +1,34 @@
 # get information for each deck in inventory
-SELECT D.id, D.color, DT.deck_name, DT.length, DT.description, 
-B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url FROM sk8_deck_inv D
+SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, 
+B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
 INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
 INNER JOIN sk8_brand B on DT.fk_brand_id = B.id;
 
 SELECT T.id, TT.truck_name, TT.width, 
-B.brand_name as trucl_brand_name, B.brand_img_url as trucl_brand_img_url FROM sk8_truck_inv T
+B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
 INNER JOIN sk8_truck_type TT on T.fk_truck_id = TT.id 
 INNER JOIN sk8_brand B on TT.fk_brand_id = B.id;
 
-SELECT W.id, W.color, WT.wheel_name, WT.diameter, WT.durometer, 
-B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url FROM sk8_wheel_inv W
+SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, 
+B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
 INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
 INNER JOIN sk8_brand B on WT.fk_brand_id = B.id;
 
 # show only available parts in inventory
 SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, 
-B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url FROM sk8_deck_inv D
+B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
 INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
 INNER JOIN sk8_brand B on DT.fk_brand_id = B.id
 WHERE D.id NOT IN (SELECT fk_deck_id from sk8_skateboards);
 
 SELECT T.id, TT.truck_name, TT.width, 
-B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url FROM sk8_truck_inv T
+B.brand_name as truck_brand_name, B.brand_img_url as truck_brand_img_url, T.fk_truck_id as fkid FROM sk8_truck_inv T
 INNER JOIN sk8_truck_type TT on T.fk_truck_id = TT.id 
 INNER JOIN sk8_brand B on TT.fk_brand_id = B.id
 WHERE T.id NOT IN (SELECT fk_truck_id from sk8_skateboards);
 
 SELECT W.id, W.color as wheelColor, WT.wheel_name, WT.diameter, WT.durometer, 
-B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url FROM sk8_wheel_inv W
+B.brand_name as wheel_brand_name, B.brand_img_url as wheel_brand_img_url, W.fk_wheel_id as fkid FROM sk8_wheel_inv W
 INNER JOIN sk8_wheel_type WT on W.fk_wheel_id=WT.id
 INNER JOIN sk8_brand B on WT.fk_brand_id = B.id
 WHERE W.id NOT IN (SELECT fk_wheel_id from sk8_skateboards);

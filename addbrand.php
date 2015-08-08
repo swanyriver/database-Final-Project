@@ -29,3 +29,5 @@ $stmt->close();
 //echo "last id insterd is $last_id";
 
 redirect("{$_POST['brand_name']} added to brands",'inventory');
+
+?>

@@ -56,3 +56,16 @@
     border-color: gray;
     border-style: dashed;
 }
+
+#buildButtons > *{
+    width: 50%;
+    float: left;
+}
+#filterbutton {
+    width: 100%;
+}
+
+.boardimage {
+    width:100%;
+    height:auto;
+}
