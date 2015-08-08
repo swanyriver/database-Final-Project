@@ -49,3 +49,10 @@
 .skateboardPanel .inventorycontrols, .buildPanel .inventorycontrols{
     display:none;
 }
+
+.buildPartHolder {
+    height: 141px;
+    border: 2px;
+    border-color: gray;
+    border-style: dashed;
+}
