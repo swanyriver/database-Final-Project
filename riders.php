@@ -56,7 +56,7 @@ foreach ($possibles as $key => $value) {
                     . "<input type=\"hidden\" name=\"redirect\" value=\"riders\"></input>"
                     . "<select name=\"skid\">"
                     . $value
-                    . "</select> <button type=\"submit\"> add board </button> </form>";
+                    . "</select> <button type=\"submit\"> <span class=\"glyphicon glyphicon-plus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add This Board to this Rider\"> </span> </button> </form>";
 }
 
 
@@ -128,13 +128,17 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
       
       //boards and add boards controls
       if(isset($combinations[$id])) echo "Rides Boards:" . $combinations[$id];
-      if(isset($possibles[$id])) echo $possibles[$id];
 
       echo "</div>"; #col
 
       echo "</div></div>";  #Row #fluid
       echo "</div>"; #body
-      echo "</div>"; #panel
+      echo "<div class=\"panel-footer\"> <div></div>";
+
+      if(isset($possibles[$id])) echo $possibles[$id];
+
+
+      echo "</div></div>"; #footer #panel
 
     }
     ?>

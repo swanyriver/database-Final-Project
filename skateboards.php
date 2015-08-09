@@ -53,7 +53,7 @@ foreach ($possibles as $key => $value) {
                     . "<input type=\"hidden\" name=\"skid\" value=\"{$key}\"></input>"
                     . "<select name=\"rid\">"
                     . $value
-                    . "</select> <button type=\"submit\"> add rider </button> </form>";
+                    . "</select> <button type=\"submit\"> <span class=\"glyphicon glyphicon-plus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add This Rider to this Board\"> </span> </button> </form>";
 }
 
 
@@ -140,7 +140,7 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
       echo "</div>"; #body
 
       ## panel footer, for rider display and controls
-      echo "<div class=\"panel-footer\">";
+      echo "<div class=\"panel-footer\"> <div></div>";
 
       if(isset($combinations[$id])) echo "Riders:" . $combinations[$id];
       if(isset($possibles[$id])) echo $possibles[$id];

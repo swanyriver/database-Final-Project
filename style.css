@@ -66,11 +66,52 @@
 }
 
 .boardimage {
-    width:100%;
-    height:auto;
+    max-width:100%;
+    max-height:300px;
+    margin-bottom:20px;
 }
 
 .riderimg {
     width:100%;
-    height:auto;
+    max-height:300px;
+}
+
+div.message {
+    color:green;
+    font-weight:bold;
+    width:100%;
+    text-align:center;
+    font-size: x-large;
+    margin: 15px;
+}
+
+.addform {
+   margin:40px;
+}
+.addform > * {
+    margin:10px;
+}
+
+.panel-footer > * {
+    display:inline;
+    padding-left:35px;
+}
+.panel-footer button, .panel-body button {
+    background:none;
+    border:none;
+}
+.addRiderForm {
+    float:right;
+    display:block;
+}
+
+div.message.error {
+    color:red;
+}
+
+#buildButtons{
+   margin: 10px;
+}
+#buildButtons *[disabled] {
+    opacity:.3;
 }

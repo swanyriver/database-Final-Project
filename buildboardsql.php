@@ -105,12 +105,12 @@ if($stmt->errno){
 
       <a href="build.php">
       <button type="button" class="btn btn-warning">
-      <span class="glyphicon glyphicon-backward"> </span> Go Back
+      <span class="glyphicon glyphicon-backward"> </span> Go Back (Cancel Build)
       </button>
       </a>
 
       <button type="submit" class="btn btn-danger">
-      <span class="glyphicon glyphicon-wrench"> </span>Dissasemble Board(s)
+      <span class="glyphicon glyphicon-wrench"> </span>Dissasemble Board(s) and Build new Board
       </button>
 
     </form>
