@@ -97,8 +97,9 @@ WHERE RS.fk_rider_id IS null;
 
 -- table of all rider skateboard combinations not yet in existince
 -- with names
-SELECT POSSIBLES.rid, POSSIBLES.rider_name, POSSIBLES.skid, POSSIBLES.board_name 
-FROM (select B.id as skid, R.id as rid from sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
+SELECT POSSIBLES.skid, POSSIBLES.board_name, POSSIBLES.rid, POSSIBLES.rider_name
+FROM (select B.id as skid, B.board_name, R.id as rid, R.rider_name
+FROM sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
 LEFT OUTER JOIN sk8_riders_skateboards RS
 ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
 WHERE RS.fk_rider_id IS null;
