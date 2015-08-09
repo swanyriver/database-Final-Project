@@ -37,8 +37,6 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <ul class="nav nav-tabs">
-      <li id="home_tab"><a href="welcome.php" >Home</a></li>
-      <li id="diagrams_tab"><a href="diagrams.php">Diagrams and Queries</a></li>
       <li id="riders_tab"><a href="riders.php">Riders</a></li>
       <li id="skateboards_tab"><a href="skateboards.php">SkateBoards</a></li>
       <li id="inventory_tab"><a href="inventory.php">Invetory</a></li>
