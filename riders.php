@@ -64,6 +64,22 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
 
 ?>
 
+<form class="form-inline addform" action="addrider.php" method="POST">
+  
+  <div class="form-group">
+    <label for="ridernameinput">Rider Name</label>
+    <input type="text" class="form-control" id="ridernameinput" name="rider_name">
+  </div>
+  <div class="form-group">
+    <label for="riderurlinput">Image URL</label>
+    <input type="text" class="form-control" id="riderurlinput" name="rider_url">
+  </div>
+
+  <button type="submit" class="btn btn-default">Add Rider</button>
+  
+</form>
+
+
 <div class="container-fluid">
   <div class="row" id="rider_container">
     <div class="col-md-7">
@@ -80,7 +96,7 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
       echo "<div class=\"panel-heading\"> $name ";
       echo" <span class=\"inventorycontrols\" > 
       
-      <form action=\"removeRider.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Disasemble Skateboard\">
+      <form action=\"removeRider.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Remove Rider\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
       <button type=\"submit\">
         <span class=\"glyphicon glyphicon-remove\" > </span>
