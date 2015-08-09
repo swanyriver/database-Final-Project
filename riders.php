@@ -20,13 +20,15 @@ $combinations = array();
 $possibles= array();
 
 //create links to skateboards riders
-$stmt = $mysqli->prepare("SELECT fk_skateboard_id, fk_rider_id, R.rider_name from sk8_riders_skateboards 
-                          INNER JOIN sk8_riders R on R.id = fk_rider_id");
+$stmt = $mysqli->prepare(
+"SELECT fk_skateboard_id, fk_rider_id, B.board_name
+FROM sk8_riders_skateboards
+INNER JOIN sk8_skateboards B ON B.id = fk_skateboard_id");
 $stmt->execute();
 $stmt->bind_result($skid,$rid,$name);
 while($stmt->fetch()){
-  if(!isset($combinations[$skid])) $combinations[$skid] = "";
-  $combinations[$skid] .= getRiderelem($rid,$name,$skid);
+  if(!isset($combinations[$rid])) $combinations[$rid] = "";
+  $combinations[$rid] .= getBoardelem($skid,$name,$rid);
 }
 $stmt->close();
 
@@ -42,36 +44,40 @@ ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
 WHERE RS.fk_rider_id IS null;");
 
 $stmt->execute();
-$stmt->bind_result($skid,$notused,$rid,$name);
+$stmt->bind_result($skid,$name,$rid,$notused);
 while($stmt->fetch()){
-  if(!isset($possibles[$skid])) $possibles[$skid] ="";
-  $possibles[$skid] .= "<option value=\"{$rid}\"> $name </option>";
+  if(!isset($possibles[$rid])) $possibles[$rid] ="";
+  $possibles[$rid] .= "<option value=\"{$skid}\"> $name </option>";
 }
 $stmt->close();
 foreach ($possibles as $key => $value) {
   $possibles[$key] = "<form class=\"addRiderForm\" action=\"addboardrider.php\" method=\"POST\" >" 
-                    . "<input type=\"hidden\" name=\"skid\" value=\"{$key}\"></input>"
-                    . "<select name=\"rid\">"
+                    . "<input type=\"hidden\" name=\"rid\" value=\"{$key}\"></input>"
+                    . "<select name=\"skid\">"
                     . $value
-                    . "</select> <button type=\"submit\"> add rider </button> </form>";
+                    . "</select> <button type=\"submit\"> add board </button> </form>";
 }
 
+print_r($combinations);
+echo "<br><br><hr>possibles<br>";
+print_r($possibles);
+exit();
 
 
 include "headandnav.php";
-echo "<script> document.getElementById('skateboards_tab').classList.add('active'); </script>";
+echo "<script> document.getElementById('riders_tab').classList.add('active'); </script>";
 
 ?>
 
 <div class="container-fluid">
-  <div class="row" id="skateboard_container">
+  <div class="row" id="rider_container">
     <div class="col-md-7">
     
     <?php
     #get riders
     $stmt = $mysqli->prepare("SELECT id, rider_name, rider_img_url FROM sk8_riders");
     $stmt->execute();
-    $stmt->bind_result($id,$name,$img)
+    $stmt->bind_result($id,$name,$img);
     while($stmt->fetch()){
 
       echo "<a name=\"{$id}\"> </a>";
@@ -109,11 +115,7 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
 
       echo "</div></div>";  #Row #fluid
       echo "</div>"; #body
-
-      ## panel footer, for rider display and controls
-      echo "<div class=\"panel-footer\">";
-
-      echo "</div></div>"; #fodter #panel
+      echo "</div>"; #panel
 
     }
     ?>
