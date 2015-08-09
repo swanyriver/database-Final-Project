@@ -50,11 +50,11 @@ if($stmt->errno){
   //parts already in use in other boards
   if($number == 1062){
     $stmt->close();
-    $stmt=$mysqli->prepare("SELECT DISTINCT B.board_name from sk8_skateboards B 
+    $stmt=$mysqli->prepare("SELECT DISTINCT B.id, B.board_name from sk8_skateboards B 
                             WHERE fk_deck_id = ? OR fk_truck_id = ? OR fk_wheel_id = ?");
     $stmt->bind_param('iii',$_POST['fk_deck_id'],$_POST['fk_truck_id'],$_POST['fk_wheel_id']);
     $stmt->execute();
-    $stmt->bind_result($name);
+    $stmt->bind_result($id,$name);
 
     ?>
 
@@ -87,7 +87,7 @@ if($stmt->errno){
     <?php
     echo "<h2>These parts are currently being used in:</h2> <br> <ul>";
     while ($stmt->fetch()) {
-      echo "<li> $name </li>";
+      echo "<li> <a href=\"skateboards.php#{$id}\"> $name </a> </li>";
     }
     echo "</ul>";
     $stmt->close();
