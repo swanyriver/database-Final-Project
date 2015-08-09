@@ -100,7 +100,15 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
       echo "<a name=\"{$id}\"> </a>";
       echo "<div class=\"panel panel-default\">";
       echo "<div class=\"panel-heading\">{$row['board_name']}";
-      echo" <span class=\"inventorycontrols\" > 
+      echo" <span class=\"inventorycontrols\" >
+
+      <form action=\"updateimg.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Change Image\">
+      <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
+      <input type=\"hidden\" name=\"table\" value=\"skateboards\"></input>
+      <button type=\"submit\">
+        <span class=\"glyphicon glyphicon-pencil\" > </span>
+        </button>
+      </form> 
       
       <form action=\"disasmble.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Disasemble Skateboard\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>

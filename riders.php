@@ -97,6 +97,14 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
       echo "<div class=\"panel-heading\"> $name ";
       echo" <span class=\"inventorycontrols\" > 
       
+      <form action=\"updateimg.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Change Image\">
+      <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
+      <input type=\"hidden\" name=\"table\" value=\"riders\"></input>
+      <button type=\"submit\">
+        <span class=\"glyphicon glyphicon-pencil\" > </span>
+        </button>
+      </form>
+
       <form action=\"removeRider.php\" method=\"post\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Remove Rider\">
       <input type=\"hidden\" name=\"id\" value=\"{$id}\"></input>
       <button type=\"submit\">

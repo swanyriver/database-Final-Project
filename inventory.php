@@ -46,8 +46,8 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
   }
 </script>
 
-<form class="form-inline" action="addbrand.php" method="POST">
-  <button type="submit" class="btn btn-default">Add Brand</button>
+<form class="form-inline addform" action="addbrand.php" method="POST">
+  
   <div class="form-group">
     <label for="brandnameinput">Brand Name</label>
     <input type="text" class="form-control" id="brandnameinput" name="brand_name">
@@ -56,6 +56,8 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
     <label for="brandurlinput">Image URL</label>
     <input type="text" class="form-control" id="brandurlinput" name="brand_url">
   </div>
+
+  <button type="submit" class="btn btn-default">Add Brand</button>
   
 </form>
 
