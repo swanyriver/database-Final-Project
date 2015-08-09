@@ -86,11 +86,19 @@ WHERE id=[lastinserted];
 
 
 -- table of all posible rider/skateboard combinations --
-select B.id as skid, R.id as rid from sk8_skateboards B inner join sk8_riders R;
+SELECT B.id as skid, R.id as rid from sk8_skateboards B inner join sk8_riders R;
 
 -- table of all rider skateboard combinations not yet in existince
 SELECT POSSIBLES.rid, POSSIBLES.skid 
-FROM (select B.id as skid, R.id as rid from sk8_skateboards B inner join sk8_riders R) POSSIBLES
+FROM (select B.id as skid, R.id as rid from sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
+LEFT OUTER JOIN sk8_riders_skateboards RS
+ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
+WHERE RS.fk_rider_id IS null;
+
+-- table of all rider skateboard combinations not yet in existince
+-- with names
+SELECT POSSIBLES.rid, POSSIBLES.rider_name, POSSIBLES.skid, POSSIBLES.board_name 
+FROM (select B.id as skid, R.id as rid from sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
 LEFT OUTER JOIN sk8_riders_skateboards RS
 ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
 WHERE RS.fk_rider_id IS null;

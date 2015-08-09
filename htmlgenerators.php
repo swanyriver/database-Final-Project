@@ -111,4 +111,34 @@ function makeWheelInv($invAssoc, $panelclass){
 ";
 }
 
+function createSkateboardLink($id,$name)
+{
+  return "<a href=\"skateboards.php#{$id}\"> $name </a>";
+}
+
+function createRiderLink($id,$name)
+{
+  return "<a href=\"riders.php#{$id}\"> $name </a>";
+}
+
+function getBoardelem($sid,$name,$rid){
+  $elem = '';
+  //encase in div
+  //get link to skateboard
+  $elem .= createSkateboardLink($sid,$name);
+  //create button to remove relationship
+
+  return $elem;
+}
+
+function getRiderelem($rid,$name,$sid){
+  $elem = '';
+  //encase in div
+  //get link to skateboard
+  $elem .= createRiderLink($rid,$name);
+  //create button to remove relationship
+
+  return $elem;
+}
+
 ?>

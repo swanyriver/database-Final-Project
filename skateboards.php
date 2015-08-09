@@ -15,6 +15,46 @@ if ($mysqli->connect_errno || $mysqli->connect_error)
   exit();
 }
 
+//generate panel footers with riders and add riders form
+$combinations = array();
+$possibles= array();
+
+//create links to skateboards riders
+$stmt = $mysqli->prepare("SELECT fk_skateboard_id, fk_rider_id, R.rider_name from sk8_riders_skateboards 
+                          INNER JOIN sk8_riders R on R.id = fk_rider_id");
+$stmt->execute();
+$stmt->bind_result($skid,$rid,$name);
+while($stmt->fetch()){
+  if(!isset($combinations[$skid])) $combinations[$skid] = "";
+  $combinations[$skid] .= getRiderelem($rid,$name,$skid);
+}
+$stmt->close();
+
+//create dropdown menues for all possible riders for all skateboards
+// using a left outer join on with the riders/skateboard many-to-many table
+// and a cross-product table of all riders and skateboarders
+$stmt = $mysqli->prepare(
+"SELECT POSSIBLES.skid, POSSIBLES.board_name, POSSIBLES.rid, POSSIBLES.rider_name
+FROM (select B.id as skid, B.board_name, R.id as rid, R.rider_name
+FROM sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
+LEFT OUTER JOIN sk8_riders_skateboards RS
+ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
+WHERE RS.fk_rider_id IS null;");
+
+$stmt->execute();
+$stmt->bind_result($skid,$notused,$rid,$name);
+while($stmt->fetch()){
+  if(!isset($possibles[$skid])) $possibles[$skid] ="";
+  $possibles[$skid] .= "<option value=\"{$rid}\"> $name </option>";
+}
+$stmt->close();
+
+
+print_r($combinations);
+echo "<br> <hr> <br> possibles";
+print_r($possibles);
+exit();
+
 include "headandnav.php";
 echo "<script> document.getElementById('skateboards_tab').classList.add('active'); </script>";
 
