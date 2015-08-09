@@ -3,3 +3,7 @@ permisions.sh
 css/
 js/
 fonts/
+*.jpg
+*.gif
+*.png
+
