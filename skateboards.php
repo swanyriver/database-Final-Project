@@ -48,12 +48,15 @@ while($stmt->fetch()){
   $possibles[$skid] .= "<option value=\"{$rid}\"> $name </option>";
 }
 $stmt->close();
+foreach ($possibles as $key => $value) {
+  $possibles[$key] = "<form class=\"addRiderForm\" action=\"addboarider.php\" method=\"POST\" >" 
+                    . "<input type=\"hidden\" name=\"skid\" value=\"{$key}\"></input>"
+                    . "<select name=\"rid\">"
+                    . $value
+                    . "</select> <button type=\"submit\"> add rider </button> </form>";
+}
 
 
-print_r($combinations);
-echo "<br> <hr> <br> possibles";
-print_r($possibles);
-exit();
 
 include "headandnav.php";
 echo "<script> document.getElementById('skateboards_tab').classList.add('active'); </script>";
@@ -94,6 +97,7 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
       $row['id']=-1;
       $row['fkid']=-1;
 
+      echo "<a name=\"{$id}\"> </a>";
       echo "<div class=\"panel panel-default\">";
       echo "<div class=\"panel-heading\">{$row['board_name']}";
       echo" <span class=\"inventorycontrols\" > 
@@ -126,8 +130,14 @@ echo "<script> document.getElementById('skateboards_tab').classList.add('active'
 
       echo "</div></div>"; #fluid #Row
       echo "</div>"; #body
-      //todo put footer here
-      echo "</div>"; #panel
+
+      ## panel footer, for rider display and controls
+      echo "<div class=\"panel-footer\">";
+
+      if(isset($combinations[$id])) echo "Riders:" . $combinations[$id];
+      if(isset($possibles[$id])) echo $possibles[$id];
+
+      echo "</div></div>"; #fodter #panel
 
     }
     ?>

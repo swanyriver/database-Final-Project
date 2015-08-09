@@ -121,19 +121,20 @@ function createRiderLink($id,$name)
   return "<a href=\"riders.php#{$id}\"> $name </a>";
 }
 
-function getBoardelem($sid,$name,$rid){
+function getBoardelem($skid,$name,$rid){
   $elem = '';
   //encase in div
+
   //get link to skateboard
-  $elem .= createSkateboardLink($sid,$name);
+  $elem .= createSkateboardLink($skid,$name);
   //create button to remove relationship
 
   return $elem;
 }
 
-function getRiderelem($rid,$name,$sid){
+function getRiderelem($rid,$name,$skid){
   $elem = '';
-  //encase in div
+  //encase in span
   //get link to skateboard
   $elem .= createRiderLink($rid,$name);
   //create button to remove relationship
