@@ -127,6 +127,7 @@ function getBoardelem($skid,$name,$rid){
   $elem = "<form class=\"removeRelateForm\" action=\"addboardrider.php\" method=\"POST\">"
         . "<input type=\"hidden\" name=\"delete\" value=\"true\"></input>"
         . "<input type=\"hidden\" name=\"rid\" value=\"{$rid}\"></input>"
+        . "<input type=\"hidden\" name=\"redirect\" value=\"riders\"></input>"
         . "<input type=\"hidden\" name=\"skid\" value=\"{$skid}\"></input>";
   //get link to rider
   $elem .= createSkateboardLink($skid,$name);

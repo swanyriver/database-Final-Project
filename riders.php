@@ -53,6 +53,7 @@ $stmt->close();
 foreach ($possibles as $key => $value) {
   $possibles[$key] = "<form class=\"addRiderForm\" action=\"addboardrider.php\" method=\"POST\" >" 
                     . "<input type=\"hidden\" name=\"rid\" value=\"{$key}\"></input>"
+                    . "<input type=\"hidden\" name=\"redirect\" value=\"riders\"></input>"
                     . "<select name=\"skid\">"
                     . $value
                     . "</select> <button type=\"submit\"> add board </button> </form>";

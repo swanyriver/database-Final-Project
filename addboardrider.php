@@ -6,9 +6,15 @@ include "storedInfo.php"; //contains hostname/username/password/databasename
 include "globalConstants.php";
 include "sqloperationfunctions.php";
 
+if(isset($_POST['redirect'])){
+  $redirect = $_POST['redirect'];
+} else $redirect = 'skateboards';
+
 if(!isset($_POST['skid']) || !isset($_POST['rid'])){
-  fishy('the board and rider must be set','skateboards');
+  fishy('the board and rider must be set',$redirect);
 }
+
+
 
 if(isset($_POST['delete'])){
   $query = "DELETE FROM sk8_riders_skateboards WHERE fk_skateboard_id = ? AND fk_rider_id = ?";
@@ -26,11 +32,11 @@ if($stmt->errno){
   $number = $stmt->errno;
   $stmt->close();
 
-  fishy($error,'skateboards');
+  fishy($error,$redirect);
 }
 
 $stmt->close();
 
-redirect("rider/skateboard relationship $create",'skateboards');
+redirect("rider/skateboard relationship $create",$redirect);
 
 ?>
