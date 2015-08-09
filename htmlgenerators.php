@@ -132,7 +132,7 @@ function getBoardelem($skid,$name,$rid){
   //get link to rider
   $elem .= createSkateboardLink($skid,$name);
   //create button to remove relationship
-  $elem .= "<button type=\"submit\"  data-toggle=\"tooltip\" data-placement=\"right\" title=\"\" data-original-title=\"Remove Board From Rider\">
+  $elem .= "<button type=\"submit\" class=\"removeBoardButton\"  data-toggle=\"tooltip\" data-placement=\"right\" title=\"\" data-original-title=\"Remove Board From Rider\">
         <span class=\"glyphicon glyphicon-remove\"> </span>
         </button></form>";
 

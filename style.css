@@ -103,10 +103,12 @@ div.message.error {
     display:inline;
     padding-left:35px;
 }
-.panel-footer button, .panel-body button {
+.panel-footer button, .removeBoardButton {
     background:none;
     border:none;
 }
+
+
 .addRiderForm {
     float:right;
     display:block;

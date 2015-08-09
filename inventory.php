@@ -95,7 +95,7 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
         <input type="text" class="form-control" name="color">
       </div><br>
       <input type="hidden" name="table" value="deck">
-      <button type="submit" class="btn btn-default">Add Deck</button>
+      <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span> Add Deck</button>
     </form>
   </div>
 </div>
@@ -137,7 +137,8 @@ while($row=$result->fetch_assoc()){
         <input type="number" class="form-control" name="width">
       </div><br>
       <input type="hidden" name="table" value="truck">
-      <button type="submit" class="btn btn-default">Add Truck</button>
+      
+      <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span> Add Truck</button>
     </form>
   </div>
 </div>
@@ -185,7 +186,8 @@ while($row=$result->fetch_assoc()){
         <input type="text" class="form-control" name="color">
       </div><br>
       <input type="hidden" name="table" value="wheel">
-      <button type="submit" class="btn btn-default">Add Wheels</button>
+
+      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Wheels</button>
     </form>
   </div>
 </div>
