@@ -58,11 +58,6 @@ foreach ($possibles as $key => $value) {
                     . "</select> <button type=\"submit\"> add board </button> </form>";
 }
 
-print_r($combinations);
-echo "<br><br><hr>possibles<br>";
-print_r($possibles);
-exit();
-
 
 include "headandnav.php";
 echo "<script> document.getElementById('riders_tab').classList.add('active'); </script>";
@@ -107,9 +102,8 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
       echo "<div class=\"col-md-8\">";
       
       //boards and add boards controls
-      echo "boards listed here"; //todo temp
-      //if(isset($combinations[$id])) echo "Riders:" . $combinations[$id];
-      //if(isset($possibles[$id])) echo $possibles[$id];
+      if(isset($combinations[$id])) echo "Rides Boards:" . $combinations[$id];
+      if(isset($possibles[$id])) echo $possibles[$id];
 
       echo "</div>"; #col
 
