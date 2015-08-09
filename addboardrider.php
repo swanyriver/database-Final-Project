@@ -10,7 +10,15 @@ if(!isset($_POST['skid']) || !isset($_POST['rid'])){
   fishy('the board and rider must be set','skateboards');
 }
 
-$stmt = $mysqli->prepare("INSERT INTO sk8_riders_skateboards(fk_skateboard_id,fk_rider_id) VALUES (?,?) ");
+if(isset($_POST['delete'])){
+  $query = "DELETE FROM sk8_riders_skateboards WHERE fk_skateboard_id = ? AND fk_rider_id = ?";
+  $create = "deleted";
+} else {
+  $query = "INSERT INTO sk8_riders_skateboards(fk_skateboard_id,fk_rider_id) VALUES (?,?) ";
+  $create = "created";
+}
+
+$stmt = $mysqli->prepare($query);
 $stmt->bind_param('ii',$_POST['skid'],$_POST['rid']);
 $stmt->execute();
 if($stmt->errno){
@@ -23,6 +31,6 @@ if($stmt->errno){
 
 $stmt->close();
 
-redirect("rider/skateboard relationship created",'skateboards');
+redirect("rider/skateboard relationship $create",'skateboards');
 
 ?>

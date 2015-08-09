@@ -49,7 +49,7 @@ while($stmt->fetch()){
 }
 $stmt->close();
 foreach ($possibles as $key => $value) {
-  $possibles[$key] = "<form class=\"addRiderForm\" action=\"addboarider.php\" method=\"POST\" >" 
+  $possibles[$key] = "<form class=\"addRiderForm\" action=\"addboardrider.php\" method=\"POST\" >" 
                     . "<input type=\"hidden\" name=\"skid\" value=\"{$key}\"></input>"
                     . "<select name=\"rid\">"
                     . $value

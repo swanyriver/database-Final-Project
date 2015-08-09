@@ -122,22 +122,34 @@ function createRiderLink($id,$name)
 }
 
 function getBoardelem($skid,$name,$rid){
-  $elem = '';
-  //encase in div
 
-  //get link to skateboard
+  //encase in form
+  $elem = "<form class=\"removeRelateForm\" action=\"addboardrider.php\" method=\"POST\">"
+        . "<input type=\"hidden\" name=\"delete\" value=\"true\"></input>"
+        . "<input type=\"hidden\" name=\"rid\" value=\"{$rid}\"></input>"
+        . "<input type=\"hidden\" name=\"skid\" value=\"{$skid}\"></input>";
+  //get link to rider
   $elem .= createSkateboardLink($skid,$name);
   //create button to remove relationship
+  $elem .= "<button type=\"submit\"  data-toggle=\"tooltip\" data-placement=\"right\" title=\"\" data-original-title=\"Remove Board From Rider\">
+        <span class=\"glyphicon glyphicon-remove\"> </span>
+        </button></form>";
 
   return $elem;
 }
 
 function getRiderelem($rid,$name,$skid){
-  $elem = '';
-  //encase in span
-  //get link to skateboard
+  //encase in form
+  $elem = "<form class=\"removeRelateForm\" action=\"addboardrider.php\" method=\"POST\">"
+        . "<input type=\"hidden\" name=\"delete\" value=\"true\"></input>"
+        . "<input type=\"hidden\" name=\"rid\" value=\"{$rid}\"></input>"
+        . "<input type=\"hidden\" name=\"skid\" value=\"{$skid}\"></input>";
+  //get link to rider
   $elem .= createRiderLink($rid,$name);
   //create button to remove relationship
+  $elem .= "<button type=\"submit\"  data-toggle=\"tooltip\" data-placement=\"right\" title=\"\" data-original-title=\"Remove Rider From Board\">
+        <span class=\"glyphicon glyphicon-remove\"> </span>
+        </button></form>";
 
   return $elem;
 }
