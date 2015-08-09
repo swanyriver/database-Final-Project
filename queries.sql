@@ -1,4 +1,4 @@
-# get information for each deck in inventory
+# get information for each part in inventory
 SELECT D.id, D.color as deckColor, DT.deck_name, DT.length, DT.description, 
 B.brand_name as deck_brand_name, B.brand_img_url as deck_brand_img_url, D.fk_deck_id as fkid FROM sk8_deck_inv D
 INNER JOIN sk8_deck_type DT on D.fk_deck_id = DT.id 
