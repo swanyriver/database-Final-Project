@@ -74,6 +74,8 @@ echo "<script> document.getElementById('build_tab').classList.add('active'); </s
 
  ?>
 
+ <div id="buildInstructions" > Choose One of Each from Below by Clicking on Them </div>
+
  <div class="container-fluid">
   <div class="row">
     <div class="col-lg-2"></div>
@@ -82,15 +84,15 @@ echo "<script> document.getElementById('build_tab').classList.add('active'); </s
       <div class="container-fluid">
         <div class="row">
         <div class="col-lg-4">
-          <span class="builpartlabel">Deck</span>
+          <div class="builpartlabel">Deck</div>
           <div class="buildPartHolder" id="deckPart"></div>
         </div>
         <div class="col-lg-4">
-          <span class="builpartlabel">Truck</span>
+          <div class="builpartlabel">Truck</div>
           <div class="buildPartHolder" id="truckPart"></div>
         </div>
         <div class="col-lg-4">
-          <span class="builpartlabel">Wheel</span>
+          <div class="builpartlabel">Wheel</div>
           <div class="buildPartHolder" id="wheelPart"></div>
         </div>
       </div></div>
@@ -234,7 +236,7 @@ echo" </div>
       <input id="wheelkey" type="hidden" name="fk_wheel_id" value=""></input>
       
       What is it's name:<input type="text" name="board_name"></input><br>
-      (Optional) URL for a picture of it<input type="text" name="board_img_url"></input>
+      (Optional) URL for a picture of it<input type="url" name="board_img_url"></input>
 
       <br>
       <button type="submit" class="btn btn-success">

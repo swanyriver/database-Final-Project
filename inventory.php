@@ -54,7 +54,7 @@ echo "<script> document.getElementById('inventory_tab').classList.add('active');
   </div>
   <div class="form-group">
     <label for="brandurlinput">Image URL</label>
-    <input type="text" class="form-control" id="brandurlinput" name="brand_url">
+    <input type="url" class="form-control" id="brandurlinput" name="brand_url">
   </div>
 
   <button type="submit" class="btn btn-default">Add Brand</button>

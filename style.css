@@ -115,3 +115,32 @@ div.message.error {
 #buildButtons *[disabled] {
     opacity:.3;
 }
+
+.inventory_heading {
+    text-align: center;
+    font-weight:bold;
+    font-size:xx-large;
+}
+
+#boardTemplate {
+    margin:25px;
+}
+
+.builpartlabel {
+    text-align:center;
+    font-weight:bold;
+    padding-bottom:5px;
+}
+
+.addPanel .panel-heading {
+    background-color:lightgreen;
+    padding-bottom:20px;
+    padding-top:20px;
+    text-align:center;    
+}
+
+#buildInstructions {
+    text-align:center;
+    font-weight:bold;
+    font-size:xx-large;
+}

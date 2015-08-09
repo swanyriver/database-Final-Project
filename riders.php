@@ -73,7 +73,7 @@ echo "<script> document.getElementById('riders_tab').classList.add('active'); </
   </div>
   <div class="form-group">
     <label for="riderurlinput">Image URL</label>
-    <input type="text" class="form-control" id="riderurlinput" name="rider_url">
+    <input type="url" class="form-control" id="riderurlinput" name="rider_url">
   </div>
 
   <button type="submit" class="btn btn-default">Add Rider</button>
