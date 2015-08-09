@@ -78,6 +78,8 @@ DELETE from sk8_[deck/truck/wheel]_inv WHERE id=[]
 -- delete type if there are no more instances
 delete from sk8_[deck/truck/wheel]_type where id not in (select fk_[deck/truck/wheel]_id from sk8_[deck/truck/wheel]_inv);
 
+DELETE FROM sk8_riders_skateboards WHERE fk_skateboard_id = ? AND fk_rider_id = ?;
+
 
 -- update img for board, because prepared statement cant insert null or default ---
 UPDATE sk8_skateboards

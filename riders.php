@@ -37,7 +37,7 @@ $stmt->close();
 // and a cross-product table of all riders and skateboarders
 $stmt = $mysqli->prepare(
 "SELECT POSSIBLES.skid, POSSIBLES.board_name, POSSIBLES.rid, POSSIBLES.rider_name
-FROM (select B.id as skid, B.board_name, R.id as rid, R.rider_name
+FROM (SELECT B.id as skid, B.board_name, R.id as rid, R.rider_name
 FROM sk8_skateboards B INNER JOIN sk8_riders R) POSSIBLES
 LEFT OUTER JOIN sk8_riders_skateboards RS
 ON RS.fk_rider_id = POSSIBLES.rid AND RS.fk_skateboard_id = POSSIBLES.skid
